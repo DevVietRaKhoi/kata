@@ -7,8 +7,8 @@ This week we will start with a very simple quiz and this one still managed to fa
 Write a piece of code that does the following:
 
 1. Runs a counter from 1 to 100
-2. When the counter is a multiple of 3, print the string "Fizz" followed by new line
-3. When the counter is a multiple of 5, print the string "Buzz" followed by new line
+2. When the counter is a multiple of 3, prints the string "Fizz" followed by new line
+3. When the counter is a multiple of 5, prints the string "Buzz" followed by new line
 
 ## Submission
 
