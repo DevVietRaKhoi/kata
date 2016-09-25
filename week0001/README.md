@@ -21,6 +21,7 @@ Submit your code in any of the following languages:
 * Javascript (browser/Node.JS)
 * OCaml
 * PHP
+* Perl
 * Python
 * Sh/KSh/ZSh/Bash
 
