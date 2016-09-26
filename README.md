@@ -17,6 +17,7 @@ Submit your code in any of the following languages:
 * PHP
 * Perl
 * Python
+* Ruby
 * Sh/KSh/ZSh/Bash
 
 You can submit by sending an email to viet@code2.pro or submit a pull request.
