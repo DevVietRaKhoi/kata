@@ -16,4 +16,5 @@ end
 def buzz(n)
   p 'buzz' if n%5==0
 end
+
 fizz_buzz(100)
