@@ -20,8 +20,8 @@ Submit your code in any of the following languages:
 * Java
 * Javascript (browser/Node.JS)
 * OCaml
-* PHP
 * Perl
+* PHP
 * Python
 * Ruby
 * Sh/KSh/ZSh/Bash
