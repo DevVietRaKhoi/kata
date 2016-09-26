@@ -13,7 +13,6 @@ namespace DVRK
                 if (i % 5 == 0)
                     Console.WriteLine("Buzz\n");
             }
-            Console.ReadKey();
         }
     }
 }
