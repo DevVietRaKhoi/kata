@@ -2,9 +2,9 @@
 p "Start counting:" 
 for counter in 0..100
   if counter % 3 == 0
-    p "Fizzi \n" 
+    p "Fizzi" 
   elsif counter % 5 == 0 
-    p "Buzz \n" 
+    p "Buzz" 
   else
     p counter
   end
