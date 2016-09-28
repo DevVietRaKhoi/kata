@@ -1,11 +1,11 @@
+for counter in 1..100
 
-p "Start counting:" 
-for counter in 0..100
   if counter % 3 == 0
-    p "Fizzi" 
-  elsif counter % 5 == 0 
-    p "Buzz" 
-  else
-    p counter
+    p "Fizz" 
   end
+
+  if counter % 5 == 0 
+    p "Buzz" 
+  end
+
 end
