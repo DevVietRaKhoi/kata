@@ -1,8 +1,11 @@
-FIZZ = [1,2,2]
+FIZZ = ["Fizz","Fizz\nFizz","Fizz\nFizz"]
+
 def fizz_buzz(n)
-  (n/5).times{|i|
-    FIZZ[i%3].times{ p 'Fizz' }
-    p 'Buzz'
+  t = n/5
+  t.times{|i|
+    puts FIZZ[i%3]
+    puts "Buzz"
   }
 end
+
 fizz_buzz(100)
