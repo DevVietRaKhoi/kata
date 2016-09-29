@@ -1,6 +1,7 @@
 This is my benchmark code week1
 ```
 require 'benchmark'
+
 def fb(n)
   s = ''
   (1..n).each{|i|
@@ -8,7 +9,6 @@ def fb(n)
     s = 'Buzz' if i%5 == 0
   }                    
 end
-
 
 def fb1(n)
   x = 0
@@ -24,7 +24,6 @@ def fb1(n)
     end
   end
 end
-
 
 FIZZ = ["Fizz","Fizz\nFizz","Fizz\nFizz"]
 def fb2(n)
