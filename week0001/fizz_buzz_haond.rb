@@ -1,20 +1,15 @@
 def fizz_buzz(n)
-  (1..n).each { |i| 
-    fizz(i)
-    buzz(i)  
-  }
-end
-
-#fizz(3) => 'fizz'
-#fizz(6) => 'fizz'
-def fizz(n)
-  p 'fizz' if n%3==0
-end
-
-#buzz(5) => 'buzz'
-#buzz(10) => 'buzz'
-def buzz(n)
-  p 'buzz' if n%5==0
-end
-
+  x = 0
+  y = 0
+  while(x + 3 <= n || y + 5 <= n)
+    if(x + 3 <= y + 5)
+        x += 3
+        puts "Fizz"
+    else
+        y += 5
+        puts "Buzz"
+    end
+  end
+end 
 fizz_buzz(100)
+
