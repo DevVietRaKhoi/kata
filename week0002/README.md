@@ -56,7 +56,7 @@ week0002/
 ### To PHP fans
 
 * If you want your submission accepted, please do not use `<br/>` and `echo`
-* You must use STDIN & STDOUT!
+* You must use `php://stdin` & `php://stdout`!
 * For your reading pleasure: http://php.net/manual/en/features.commandline.io-streams.php
 
 ### Languages
