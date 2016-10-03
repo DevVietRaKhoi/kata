@@ -21,23 +21,23 @@ public class week0002 {
 
         while (flag <= array.length / 2) { //leg-(length/2) loops, pear-(int)(length/2 + 1) loops
             // Draw top row
-            for (int i = flag; i <= col; i++) {
-                array[flag][i] = value;
+            for (int colTop = flag; colTop <= col; colTop++) {
+                array[flag][colTop] = value;
                 value++;
             }
             // Draw right col
-            for (int i = flag + 1; i <= row; i++) {
-                array[i][col] = value;
+            for (int rowRight = flag + 1; rowRight <= row; rowRight++) {
+                array[rowRight][col] = value;
                 value++;
             }
             // Draw bottom row
-            for (int i = col - 1; i >= flag; i--) {
-                array[col][i] = value;
+            for (int colBottom = col - 1; colBottom >= flag; colBottom--) {
+                array[row][colBottom] = value;
                 value++;
             }
             // Draw left col
-            for (int i = row - 1; i >= flag + 1; i--) {
-                array[i][flag] = value;
+            for (int rowLeft = row - 1; rowLeft >= flag + 1; rowLeft--) {
+                array[rowLeft][flag] = value;
                 value++;
             }
             flag++;
@@ -53,7 +53,9 @@ public class week0002 {
             for (int col = 0; col < array.length; col++) {
                 System.out.print(array[row][col] + "\t");
             }
-            System.out.print("\n \n");
+            if (row != array.length - 1) {
+                System.out.print("\n \n");
+            }
         }
 
     }
