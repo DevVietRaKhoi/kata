@@ -16,7 +16,7 @@ Write a piece of code that does the following:
 ```
 
 2. Extra: Provide an integer parameter N to create a spiral from numbers 1 to N*N (N >= 1)
-3. Extra: Provide integer parameters M & N to create a spiral from numbers 1 to M*N (M >= 1 and N >= 1)
+3. Extra: Provide integer parameters M (number of rows) & N (number of columns) to create a spiral from numbers 1 to M*N (M >= 1 and N >= 1)
 
 ## Submission
 
