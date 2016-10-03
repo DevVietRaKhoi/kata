@@ -53,6 +53,12 @@ week0002/
         |--week0002.rb
 ```
 
+### To PHP fans
+
+* If you want your submission accepted, please do not use `<br/>` and `echo`
+* You must use STDIN & STDOUT!
+* For your reading pleasure: http://php.net/manual/en/features.commandline.io-streams.php
+
 ### Languages
 
 Submit your code in any of the following languages:
