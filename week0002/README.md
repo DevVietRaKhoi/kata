@@ -1,6 +1,6 @@
 # Week 0002
 
-This week we will practice loops and basic printing to STDOUT. You are encourage to provide parameters for your function.
+This week we will practice loops and basic printing to STDOUT. You are encouraged to provide parameters for your function.
 
 ## Spiral
 
