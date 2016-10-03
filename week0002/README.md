@@ -8,10 +8,12 @@ Write a piece of code that does the following:
 
 1. Prints a square of nicely arranged numbers, that run from 1 to 16 and resemble a spiral in clock-wise direction.
 
+    ```
      1  2  3  4
     12 13 14  5
     11 16 15  6
     10  9  8  7
+    ```
 
 2. Extra: Provide an integer parameter N to create a spiral from numbers 1 to N*N (N >= 1)
 3. Extra: Provide integer parameters M (number of rows) & N (number of columns) to create a spiral from numbers 1 to M*N (M >= 1 and N >= 1)
