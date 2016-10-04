@@ -47,12 +47,9 @@ foreach ($path as $direction) {
 
 $stdout = fopen('php://stdout', 'w');
 
-$i = 1;
 foreach ($spiral as $row) {
     fwrite($stdout, implode(' ', $row));
-    if ($i++ < $M) { 
-        fwrite($stdout, "\n");
-    }
+    fwrite($stdout, "\n");
 }
 
 
