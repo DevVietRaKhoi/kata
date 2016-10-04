@@ -1,5 +1,3 @@
-import java.io.*;
-
 /**
  * Created by truon on 03/10/2016.
  */
@@ -9,7 +7,6 @@ public class week0002 {
     public static void main(String[] args) {
         int[][] array = new int[4][4];
         createSpiralRectangle(array);
-        writeArrayToFile(array);
         displayArrayToConsole(array);
     }
 
@@ -45,42 +42,6 @@ public class week0002 {
             col--;
         }
 
-    }
-
-    private static void writeArrayToFile(int[][] array) {
-        FileOutputStream fos = null;
-        File output = new File("src/output.dat");
-        try {
-            fos = new FileOutputStream(output);
-            for (int row = 0; row < array.length; row++) {
-                for (int col = 0; col < array.length; col++) {
-                    if (array[row][col] < 10 && col != array.length - 1){
-//                        System.out.print(" " + array[row][col] + " ");
-                        fos.write((" " + array[row][col] + " ").getBytes());
-                    }
-                    else if (col == array.length - 1) {
-//                        System.out.print(" " + array[row][col]);
-                        fos.write((" " + array[row][col]).getBytes());
-                    }
-                    else {
-//                        System.out.print(array[row][col] + " ");
-                        fos.write((array[row][col] + " ").getBytes());
-                    }
-                }
-                if (row != array.length - 1) {
-//                    System.out.println();
-                    fos.write(("\n").getBytes());
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
     private static void displayArrayToConsole(int[][] array) {
