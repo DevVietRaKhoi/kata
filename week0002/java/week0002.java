@@ -66,7 +66,6 @@ public class week0002 {
 //                        System.out.print(array[row][col] + " ");
                         fos.write((array[row][col] + " ").getBytes());
                     }
-
                 }
                 if (row != array.length - 1) {
 //                    System.out.println();
@@ -96,7 +95,6 @@ public class week0002 {
                 else {
                         System.out.print(array[row][col] + " ");
                 }
-
             }
             if (row != array.length - 1) {
                     System.out.println();
