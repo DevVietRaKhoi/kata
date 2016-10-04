@@ -41,7 +41,6 @@ public class week0002 {
             row--;
             col--;
         }
-
     }
 
     private static void displayArrayToConsole(int[][] array) {
