@@ -2,6 +2,7 @@
 
 $n = 4; // columns
 $m = $M = 4; // rows
+$length = ceil(log10(abs($n * $m) + 1));
 $spiral = array_fill(0, $m, array_fill(0, $n, 'x'));
 $x = 0;
 $y = -1;
@@ -41,7 +42,7 @@ while ($n >= 1 && $m >= 1) {
 
 foreach ($path as $direction) {
     list($x, $y) = move($x, $y, $direction);
-    $spiral[$x][$y] = $v++;
+    $spiral[$x][$y] = str_pad($v++, $length, " ", STR_PAD_LEFT);
 }
 
 $stdout = fopen('php://stdout', 'w');
