@@ -41,24 +41,26 @@ public class week0002 {
             row--;
             col--;
         }
+
     }
 
     private static void displayArrayToConsole(int[][] array) {
         for (int row = 0; row < array.length; row++) {
             for (int col = 0; col < array.length; col++) {
                 if (array[row][col] < 10 && col != array.length - 1){
-                        System.out.print(" " + array[row][col] + " ");
+                    System.out.print(" " + array[row][col] + " ");
                 }
-                else if (col == array.length - 1) {
-                        System.out.print(" " + array[row][col]);
+                else if (array[row][col] < 10 && col == array.length - 1) {
+                    System.out.print(" " + array[row][col]);
+                }
+                else if (col == array.length - 1){
+                    System.out.print(array[row][col]);
                 }
                 else {
-                        System.out.print(array[row][col] + " ");
+                    System.out.print(array[row][col] + " ");
                 }
             }
-            if (row != array.length - 1) {
-                    System.out.println();
-            }
+            System.out.println();
         }
     }
 }
