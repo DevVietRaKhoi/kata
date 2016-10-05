@@ -6,11 +6,12 @@ public class week0002 {
 
     public static void main(String[] args) {
         int[][] array = new int[4][4];
-        createSpiralRectangle(array);
+//        createSpiralSquare(array);
+        createSprialRectangle(array, 1);// 1: start form 1;
         displayArrayToConsole(array);
     }
 
-    private static void createSpiralRectangle(int[][] array) {
+    private static void createSpiralSquare(int[][] array) {
         int row = array.length - 1;
         int col = array.length - 1;
         int value = 1;
@@ -41,24 +42,51 @@ public class week0002 {
             row--;
             col--;
         }
+    }
 
+    private static void createSprialRectangle(int[][] array, int numStart) {
+        drawTopRight(array, numStart, 0, array[0].length - 1, 0, array.length - 1);
+    }
+
+    private static void drawTopRight(int[][] matrix, int numStart, int x1, int x2, int y1, int y2) {
+        for (int col = x1; col <= x2; col++) {
+            matrix[y1][col] = numStart++;
+        }
+        for (int row = y1 + 1; row <= y2; row++) {
+            matrix[row][x2] = numStart++;
+        }
+        if (x2 - x1 > 0 && y2 - y1 > 0) {
+            y1++;
+            x2--;
+            drawBottomLeft(matrix, numStart, x1, x2, y1, y2);
+        }
+    }
+
+    private static void drawBottomLeft(int[][] matrix, int numStart, int x1, int x2, int y1, int y2) {
+        for (int col = x2; col >= x1 ; col--) {
+            matrix[y2][col] = numStart++;
+        }
+        for (int row = y2 - 1; row >= y1 ; row--) {
+            matrix[row][x1] = numStart++;
+        }
+        if (x2 - x1 > 0 && y2 - y1 > 0) {
+            x1++;
+            y2--;
+            drawTopRight(matrix, numStart,x1, x2, y1, y2);
+        }
     }
 
     private static void displayArrayToConsole(int[][] array) {
-        for (int row = 0; row < array.length; row++) {
-            for (int col = 0; col < array.length; col++) {
-                if (array[row][col] < 10 && col != array.length - 1){
-                    System.out.print(" " + array[row][col] + " ");
+        int numberLength = String.valueOf(array.length * array[0].length).length();
+        for (int[] row : array) {
+            for (int i = 0; i < row.length; i++) {
+                if (i > 0)
+                    System.out.print(" ");
+                String s = String.valueOf(row[i]);
+                for (int j = 0; j < numberLength - s.length(); j++) { // replace null == space, one char has three slot.
+                    System.out.print(" ");
                 }
-                else if (array[row][col] < 10 && col == array.length - 1) {
-                    System.out.print(" " + array[row][col]);
-                }
-                else if (col == array.length - 1){
-                    System.out.print(array[row][col]);
-                }
-                else {
-                    System.out.print(array[row][col] + " ");
-                }
+                System.out.print(row[i]);
             }
             System.out.println();
         }
