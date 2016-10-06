@@ -1,5 +1,3 @@
-package week0002;
-
 public class Week0002 {
 	public void Spiral(int M, int N){
 
@@ -87,6 +85,6 @@ public class Week0002 {
 	
 	public static void main(String[] args) {
 		Week0002 week0002 = new Week0002();
-		week0002.Spiral(1, 2);
+		week0002.Spiral(4, 4);
 	}
 }
