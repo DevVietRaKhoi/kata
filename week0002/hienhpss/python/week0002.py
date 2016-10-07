@@ -29,9 +29,9 @@ def spiral(n=4,m=4):
 
 def test_spiral(n,m):
 	result = spiral(n,m)
-	print('\n'.join([''.join(['{:4}'.format(item) for item in row]) 
+	print('\n'.join([' '.join(['{:2}'.format(item) for item in row]) 
       for row in result]))
 
 if __name__=="__main__":
-	test_spiral(4,5)
+	test_spiral(4,4)
 	
