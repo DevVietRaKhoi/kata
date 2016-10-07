@@ -1,0 +1,9 @@
+*.o
+*.pyc
+*.pyd
+*.so
+*.a
+*.dylib
+*.bat
+*.exe
+
