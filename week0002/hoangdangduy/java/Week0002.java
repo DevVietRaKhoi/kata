@@ -77,12 +77,12 @@ public class Week0002 {
 
 		for (int temp1 = 0; temp1 < M; temp1++) {
 			for (int temp2 = 0; temp2 < N; temp2++) {
-				System.out.print(arr[temp1][temp2] + "   ");
+				System.out.format("%2d ", arr[temp1][temp2]);
 			}
 			System.out.println();
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		Week0002 week0002 = new Week0002();
 		week0002.Spiral(4, 4);
