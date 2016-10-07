@@ -10,7 +10,7 @@ $stdout = fopen('php://stdout', 'w');
 
 // You can use STDOUT or $stdout
 fprintf(STDOUT, "Input M & N: ");
-// You can use STDIN or $stdin. Anyone remembers scanning?
+// You can use STDIN or $stdin. Does anyone remember scanning?
 fscanf($stdin, "%d %d\n", $M, $N);
 // An example with $stdout
 fprintf($stdout, "(M, N) = (%d, %d)\n", $M, $N);
@@ -20,4 +20,3 @@ fprintf(STDOUT, "Your favorite quote:\n");
 // Get whole line and trim it, trust no user
 $line = strrev(trim(fgets(STDIN)));
 fprintf(STDOUT, "Reversed: %s\n", $line);
-
