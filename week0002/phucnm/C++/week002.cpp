@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <cstdio>
 #include <cstring>
 
 void spiralPrinting(int nRow, int nCol) {
@@ -41,9 +41,10 @@ void spiralPrinting(int nRow, int nCol) {
         colIdx++;
     }
     
+    int maxValueDigits = (value - 1) >= 100 ? 3 : 2;
     for (i = 0; i < nRow; i++) {
         for (int j = 0; j < nCol; j++) {
-            printf("%2d ", spiralArray[i][j]);
+            printf("%*d ", maxValueDigits, spiralArray[i][j]);
         }
         printf("\n");
     }
