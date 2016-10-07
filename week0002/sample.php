@@ -1,5 +1,7 @@
 <?php
 
+// Remember to read: http://php.net/manual/en/features.commandline.io-streams.php
+
 // Obtain handle to STDIN for reading
 $stdin = fopen('php://stdin', 'r');
 
