@@ -1,7 +1,7 @@
 def spi_round(n=4,m=4,x=0):
 	'''Looping through the spiral path to return the next
 	cell'''
-	if (x>=(n+1)/2) or (x>=(m+1)/2):
+	if (x >= (n+1)/2) or (x >= (m+1)/2):
 		return
 	for i in range(x,m-x-1):
 		yield (x,i)
@@ -16,7 +16,7 @@ def spiral(n=4,m=4):
 	'''Return the n*m board with numbers
 	arrange in spiral format'''
 	board = [[False for x in range(m)] for y in range(n)]
-	limit = int((n+1)/2)
+	limit = int((n+1) / 2)
 	count = 1
 	for i in range(limit):
 		for next_row,next_col in spi_round(n,m,i):
