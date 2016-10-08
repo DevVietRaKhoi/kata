@@ -6,7 +6,7 @@ public class week0002 {
 
     public static void main(String[] args) {
         int[][] array = new int[4][4];
-        createSprialRectangle(array, 1);// 1: start form 1;
+        createSprialRectangle(array, 1);
         displayArrayToConsole(array);
     }
 
@@ -38,7 +38,7 @@ public class week0002 {
         if (x2 - x1 > 0 && y2 - y1 > 0) {
             x1++;
             y2--;
-            drawTopRight(matrix, numStart,x1, x2, y1, y2);
+            drawTopRight(matrix, numStart, x1, x2, y1, y2);
         }
     }
 
@@ -49,7 +49,7 @@ public class week0002 {
                 if (i > 0)
                     System.out.print(" ");
                 String s = String.valueOf(row[i]);
-                for (int j = 0; j < numberLength - s.length(); j++) { // replace null == space, one char has three slot.
+                for (int j = 0; j < numberLength - s.length(); j++) {
                     System.out.print(" ");
                 }
                 System.out.print(row[i]);
