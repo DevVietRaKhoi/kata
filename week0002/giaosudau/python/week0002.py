@@ -30,7 +30,7 @@ def generate(m, n):
 
 
 def print_array(a):
-    print('\n'.join([''.join([' {:2}'.format(item) for item in row])
+    print('\n'.join([' '.join(['{:2}'.format(item) for item in row])
                      for row in a]))
 
 
