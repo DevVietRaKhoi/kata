@@ -6,8 +6,6 @@ fwrite(STDOUT, 'Input M: ');
 fscanf(STDIN, "%d", $m);
 
 $min = $m > $n ? $n : $m;
-$max = $min == $m ? $n : $m;
-$circle = ceil($min/2.0);
 $length = strlen($n*$m) + 1;
 $roundFirstValue = array();
 
@@ -35,7 +33,7 @@ for ($i=0; $i<$n; $i++)
 		if ( ($ix+1)*($mx) < ($jx+1)*($nx) || $ix == 0 )
 			$spiralArray[$i][$j] = $roundFirstValue[$round] + $i-$round + $j-$round;
 		else
-			$spiralArray[$i][$j] = $roundFirstValue[$round] + ($n-($round)*2 + $m-($round)*2)*2 -4 - $i+$round - $j+$round;
+			$spiralArray[$i][$j] = $roundFirstValue[$round] + ($n-($round)*2 + $m-($round)*2)*2 -4 - ($i-$round) - ($j-$round);
 	}
 
 for ($i=0; $i<$n; $i++) {
