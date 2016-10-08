@@ -32,7 +32,7 @@ for ($i=0; $i<$n; $i++)
 		//calculate value at a coordinate. this is mathematic solutions, you must understand this formular.
 		//my english is not good, but i willtry to explain this.
 		//when coordinate of a point belong the up part of a rectange by diagonal line. we use formular in (if),else is revert of it.
-		if ( 1.0*($ix+1)/($jx+1) <= 1.0*($nx+1)/($mx+1) || $ix == 0 )
+		if ( ($ix+1)*($mx) < ($jx+1)*($nx) || $ix == 0 )
 			$spiralArray[$i][$j] = $roundFirstValue[$round] + $i-$round + $j-$round;
 		else
 			$spiralArray[$i][$j] = $roundFirstValue[$round] + ($n-($round)*2 + $m-($round)*2)*2 -4 - $i+$round - $j+$round;
