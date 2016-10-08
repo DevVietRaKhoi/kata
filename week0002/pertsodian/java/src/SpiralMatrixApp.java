@@ -44,7 +44,7 @@ public class SpiralMatrixApp {
         spiralMatrixApp.printUsage();
       }
     }
-    else if (arg.length == 2){
+    else if (arg.length == 2) {
       try {
         int rows = Integer.parseInt(arg[0]);
         int cols = Integer.parseInt(arg[1]);
