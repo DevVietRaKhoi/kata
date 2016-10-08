@@ -6,6 +6,7 @@ fwrite(STDOUT, 'Input M: ');
 fscanf(STDIN, "%d", $m);
 
 $min = $m > $n ? $n : $m;
+$circle = ceil($min/2.0);
 $length = strlen($n*$m) + 1;
 $roundFirstValue = array();
 
