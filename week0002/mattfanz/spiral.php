@@ -4,7 +4,7 @@ function checkValidInput($input)
 {
     if (!is_numeric($input) || $input <= 0) {
         fwrite(STDERR, "The input should be numberic and > 0".PHP_EOL);
-        exit;
+        exit(1);
     }
 }
 
@@ -16,7 +16,7 @@ fwrite($handleOut, "Input the number of rows N:");
 fscanf($handleIn, "%d", $n);
 checkValidInput($n);
 
-fwrite($handleOut, "Input the number of rows M:");
+fwrite($handleOut, "Input the number of columns M:");
 fscanf($handleIn, "%d", $m);
 checkValidInput($m);
 
