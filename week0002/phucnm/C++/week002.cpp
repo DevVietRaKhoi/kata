@@ -1,9 +1,12 @@
 #include <cstdio>
 #include <cstring>
 
-void spiralPrinting(int nRow, int nCol) {
-    int spiralArray[nRow][nCol];
-    memset(spiralArray, 0, nRow * nCol);
+void spiralPrinting(size_t nRow, size_t nCol) {
+    int **spiralArray;
+    spiralArray = new int *[nRow];
+    for (int i = 0; i < nRow; i++) {
+        spiralArray[i] = new int[nCol];
+    }
     
     //value to print
     int value = 1;
@@ -33,7 +36,7 @@ void spiralPrinting(int nRow, int nCol) {
             did  =1;
         }
         lastRowIdx -= did;
-
+        
         //do the first column
         for (i = lastRowIdx; i >= rowIdx && colIdx <= lastColIdx; i--) {
             spiralArray[i][colIdx] = value++;
@@ -48,9 +51,15 @@ void spiralPrinting(int nRow, int nCol) {
         }
         printf("\n");
     }
+    
+    for( int i = 0; i < nRow; i++ ) {
+        delete [] spiralArray[i] ;
+    }
+    delete [] spiralArray ;
 }
 
 int main(int argc, const char * argv[]) {
     spiralPrinting(4, 4);
     return 0;
 }
+
