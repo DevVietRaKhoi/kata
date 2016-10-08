@@ -63,6 +63,6 @@ for ($i=0; $i<$n; $i++)
 //finally print it to terminal.
 for ($i=0; $i<$n; $i++) {
 	for ($j=0; $j<$m; $j++)
-		fwrite(STDOUT, str_pad($spiralArray[$i][$j], $length, ' ', STR_PAD_LEFT) );
+		fwrite(STDOUT, str_pad($spiralArray[$i][$j], $length - !$j?:1, ' ', STR_PAD_LEFT) );
 	fwrite(STDOUT, PHP_EOL);
 }
