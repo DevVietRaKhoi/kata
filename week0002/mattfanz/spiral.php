@@ -3,6 +3,8 @@
 function checkValidInput($input)
 {
     if (!is_numeric($input) || $input <= 0) {
+        $stderr = fopen('php://stderr', 'w');
+        fwrite($stderr, "The input should be numberic and > 0".PHP_EOL);
         exit;
     }
 }
@@ -11,11 +13,11 @@ function checkValidInput($input)
 $handleIn = fopen("php://stdin", "r");
 $handleOut = fopen('php://stdout', 'w');
 
-fwrite($handleOut, "Input N:");
+fwrite($handleOut, "Input the number of rows N:");
 fscanf($handleIn, "%d", $n);
 checkValidInput($n);
 
-fwrite($handleOut, "Input M:");
+fwrite($handleOut, "Input the number of rows M:");
 fscanf($handleIn, "%d", $m);
 checkValidInput($m);
 
@@ -29,7 +31,7 @@ $j = 0;
 $direction = 'right';
 $result = [];
 
-for ($l=1; $l<=$length; $l++) {
+for ($l = 1; $l <= $length; $l++) {
     $result[$i][$j] = $l;
     switch ($direction) {
         case 'right':
@@ -65,8 +67,7 @@ for ($l=1; $l<=$length; $l++) {
 
 foreach ($result as &$row) {
     ksort($row);
-    foreach ($row as $col) {
-        fwrite($handleOut, $col." ");
-    }
+    $rs = implode(' ', $row);
+    fwrite($handleOut, $rs);
     fwrite($handleOut, PHP_EOL);
 }
