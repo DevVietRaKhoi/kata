@@ -54,10 +54,10 @@ for ($i=0; $i<$n; $i++)
 		* Nếu nằm "trên" (nghĩa là cả 2 điểm chéo) thỉ giá trị của nó bằng giá trị start của vòng + tọa độ cuản ó
 		* Nếu nằm dưới thì sẽ bằng giá trị bắt đầu + số phần tử của vòng trừ đi tọa độ của nó.
 		*/
-		if ( ($ix+1)*($mx) < ($jx+1)*($nx) || $ix == 0 ) // nằm trên
+		if ( ($ix+1)*$mx < ($jx+1)*$nx || $ix == 0 ) // nằm trên
 			$spiralArray[$i][$j] = $roundFirstValue[$round] + $ix + $jx; // forget refactor this :D
 		else // nằm dưới
-			$spiralArray[$i][$j] = $roundFirstValue[$round] + ($n-($round)*2 + $m-($round)*2)*2 -4 - $ix - $jx; //
+			$spiralArray[$i][$j] = $roundFirstValue[$round] + ($n-($round)*2 + $m-($round)*2)*2 - 4 - $ix - $jx; //
 	}
 
 //finally print it to terminal.
