@@ -15,10 +15,10 @@
 */
 
 //nhập giá trị từ user.
-fwrite(STDOUT, 'Input N: ');
+fwrite(STDOUT, 'Input the number of rows N: ');
 fscanf(STDIN, "%d", $n);
 
-fwrite(STDOUT, 'Input M: ');
+fwrite(STDOUT, 'Input the number of columns M: ');
 fscanf(STDIN, "%d", $m);
 
 $min = $m > $n ? $n : $m;  //tìm min của hàng và cột
