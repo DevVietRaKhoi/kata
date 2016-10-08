@@ -78,8 +78,6 @@ public class Week0002 {
 			temp /= 10;
 		}
 
-		System.out.println(widthNumber);
-
 		for (int temp1 = 0; temp1 < M; temp1++) {
 			for (int temp2 = 0; temp2 < N; temp2++) {
 				System.out.format("%"+widthNumber+"d ", arr[temp1][temp2]);
