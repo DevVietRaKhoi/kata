@@ -3,8 +3,7 @@
 function checkValidInput($input)
 {
     if (!is_numeric($input) || $input <= 0) {
-        $stderr = fopen('php://stderr', 'w');
-        fwrite($stderr, "The input should be numberic and > 0".PHP_EOL);
+        fwrite(STDERR, "The input should be numberic and > 0".PHP_EOL);
         exit;
     }
 }
