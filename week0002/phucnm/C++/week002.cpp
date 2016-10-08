@@ -47,7 +47,9 @@ void spiralPrinting(size_t nRow, size_t nCol) {
     int maxValueDigits = (value - 1) >= 100 ? 3 : 2;
     for (i = 0; i < nRow; i++) {
         for (int j = 0; j < nCol; j++) {
-            printf("%*d ", maxValueDigits, spiralArray[i][j]);
+            if (j > 0)
+                printf(" ");
+            printf("%*d", maxValueDigits, spiralArray[i][j]);
         }
         printf("\n");
     }
