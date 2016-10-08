@@ -11,6 +11,7 @@ Submit your code in any of the following languages:
 * C
 * C#
 * C++
+* Go
 * Java
 * Javascript (browser/Node.JS)
 * OCaml
@@ -18,6 +19,8 @@ Submit your code in any of the following languages:
 * PHP
 * Python
 * Ruby
-* Sh/KSh/ZSh/Bash
+* Unix shells & tools: sh/ksh/bash/zsh, awk, sed, uniq, ...
 
-You can submit by sending an email to viet@code2.pro or submit a pull request.
+You can submit by creating a pull request.
+
+Please direct your ideas, suggestions, collaboration requests to: viet@code2.pro
