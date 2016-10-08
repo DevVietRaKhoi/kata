@@ -3,9 +3,9 @@ public class Week0002 {
 
 		int[][] arr = new int[M][N];
 
-		int upperLeftConrner = 0;
+		int upperLeftCorner = 0;
 		int bottomLeftCorner = 0;
-		int upperRightConrner = N - 1;
+		int upperRightCorner = N - 1;
 		int bottomRightCorner = M - 1;
 
 		int numRun = 1;
@@ -29,12 +29,11 @@ public class Week0002 {
 			/*
 			 * run from left to right
 			 */
-			while (j <= upperRightConrner && numRun <= (M * N)) {
+			while (j <= upperRightCorner && numRun <= (M * N)) {
 				arr[i][j] = numRun++;
-				// System.out.println(i + " - " + j + " - " + arr[i][j]);
 				j++;
 			}
-			upperRightConrner--;
+			upperRightCorner--;
 			j--;
 			i++;
 
@@ -43,7 +42,6 @@ public class Week0002 {
 			 */
 			while (i <= bottomRightCorner && numRun <= (M * N)) {
 				arr[i][j] = numRun++;
-				// System.out.println(i + " - " + j + " - " + arr[i][j]);
 				i++;
 			}
 			bottomRightCorner--;
@@ -55,7 +53,6 @@ public class Week0002 {
 			 */
 			while (j >= bottomLeftCorner && numRun <= (M * N)) {
 				arr[i][j] = numRun++;
-				// System.out.println(i + " - " + j + " - " + arr[i][j]);
 				j--;
 			}
 			bottomLeftCorner++;
@@ -65,19 +62,27 @@ public class Week0002 {
 			/*
 			 * run from below to above
 			 */
-			while (i > upperLeftConrner && numRun <= (M * N)) {
+			while (i > upperLeftCorner && numRun <= (M * N)) {
 				arr[i][j] = numRun++;
-				// System.out.println(i + " - " + j + " - " + arr[i][j]);
 				i--;
 			}
 			i++;
-			upperLeftConrner++;
+			upperLeftCorner++;
 			j++;
 		}
 
+		int	widthNumber = 0;
+		int temp = M * N;
+		while ( temp > 0 ){
+			widthNumber++;
+			temp /= 10;
+		}
+
+		System.out.println(widthNumber);
+
 		for (int temp1 = 0; temp1 < M; temp1++) {
 			for (int temp2 = 0; temp2 < N; temp2++) {
-				System.out.format("%2d ", arr[temp1][temp2]);
+				System.out.format("%"+widthNumber+"d ", arr[temp1][temp2]);
 			}
 			System.out.println();
 		}
@@ -85,6 +90,6 @@ public class Week0002 {
 
 	public static void main(String[] args) {
 		Week0002 week0002 = new Week0002();
-		week0002.Spiral(4, 4);
+		week0002.Spiral(100, 10);
 	}
 }
