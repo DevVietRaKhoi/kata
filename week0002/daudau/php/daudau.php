@@ -27,7 +27,6 @@ $length = strlen($n*$m) + 1;  //sử dụng để in giá trị
 $roundFirstValue = array();  //mảng này để lưu giá trị bắt đầu của mỗi vòng. VD vòng thứ 0 là 1, vòng thứ 1 là 11.
 
 $roundFirstValue[0] = 1; //giá trị vòng đầu tiên luôn là 1.
-$tmpValue = 0;
 for ($i =1; $i<$circle; $i++) {
 	/**
 	* giá trị bắt đầu mỗi vòng = giá trị bắt đầu của vòng trước đó + số số của vòng đó.
@@ -44,7 +43,7 @@ for ($i=0; $i<$n; $i++)
 		$tmpi = $i > ($n-1)/2 ? $n - 1 - $i : $i;
 		$tmpj = $j > ($m-1)/2 ? $m - 1 - $j : $j;
 		$round = $tmpi > $tmpj ? $tmpj : $tmpi;  //xác định 1 điểm thuộc vòng thứ mấy 
-		//ta "tịnh tiến" (em ko diễn tả được đoạn này) vào vòng của nó 
+		//ta "đâm" vào vòng của nó 
 		//they đổi tọa độ thành $ix, $jx, $nx, $mx.
 		$ix = $i - $round;
 		$jx = $j - $round;
