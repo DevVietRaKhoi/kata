@@ -12,10 +12,10 @@ Now you have launched a new FinTech start-up that will shake grounds with its ne
     A Name InitialAmount
     ```
 
-* `A` is the keyword, triggering an action to add
-* `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
-* `InitialAmount` is the amount of money (USD) at the time of account opening. It's a positive `double`
-* If the user attempts to add the same name again, reject
+    * `A` is the keyword, triggering an action to add
+    * `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
+    * `InitialAmount` is the amount of money (USD) at the time of account opening. It's a positive `double`
+    * If the user attempts to add the same name again, reject
 
 2. Deposit money
 
@@ -23,10 +23,10 @@ Now you have launched a new FinTech start-up that will shake grounds with its ne
     D Name Amount
     ```
 
-* `D` is the keyword, triggering an action to deposit
-* `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
-* `Amount` is the amount of money (USD) to deposit. It's a positive `double`
-* Reject if the user attempts to deposit for an invalid client
+    * `D` is the keyword, triggering an action to deposit
+    * `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
+    * `Amount` is the amount of money (USD) to deposit. It's a positive `double`
+    * Reject if the user attempts to deposit for an invalid client
 
 3. Withdraw money
 
@@ -34,17 +34,17 @@ Now you have launched a new FinTech start-up that will shake grounds with its ne
     W Name Amount
     ```
 
-* `W` is the keyword, triggering an action to withdraw
-* `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
-* `Amount` is the amount of money (USD) to withdraw. It's a positive `double`
-* Reject if the user attempts to withdraw from an invalid client
-* Reject if the user attempts to withdraw a larger amount than the actual amount of the client
+    * `W` is the keyword, triggering an action to withdraw
+    * `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
+    * `Amount` is the amount of money (USD) to withdraw. It's a positive `double`
+    * Reject if the user attempts to withdraw from an invalid client
+    * Reject if the user attempts to withdraw a larger amount than the actual amount of the client
 
 4. Success/Failure handling
 
-* If an action/command was successful, print to STDOUT `True`, followed by a newline
-* If an action/command failed, print to STDOUT `False`, followed by a newline
-* Reject unrecognized keywords by printing to STDOUT `Invalid`, followed by a newline
+    * If an action/command was successful, print to STDOUT `True`, followed by a newline
+    * If an action/command failed, print to STDOUT `False`, followed by a newline
+    * Reject unrecognized keywords by printing to STDOUT `Invalid`, followed by a newline
 
 ## Submission
 
