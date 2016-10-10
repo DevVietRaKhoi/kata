@@ -6,9 +6,9 @@ namespace DVRK
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter N: ");
+            Console.Write("Enter the number of row N: ");
             int N = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter M: ");
+            Console.Write("Enter the number of column M: ");
             int M = Convert.ToInt32(Console.ReadLine());
 
             int[,] spiral = new int[N, M];
