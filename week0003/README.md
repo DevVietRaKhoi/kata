@@ -8,9 +8,9 @@ Now you have launched a new FinTech start-up that will shake grounds with its ne
 
 1. Add a new client
 
-```
-A Name InitialAmount
-```
+    ```
+    A Name InitialAmount
+    ```
 
 * `A` is the keyword, triggering an action to add
 * `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
@@ -19,9 +19,9 @@ A Name InitialAmount
 
 2. Deposit money
 
-```
-D Name Amount
-```
+    ```
+    D Name Amount
+    ```
 
 * `D` is the keyword, triggering an action to deposit
 * `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
@@ -30,9 +30,9 @@ D Name Amount
 
 3. Withdraw money
 
-```
-W Name Amount
-```
+    ```
+    W Name Amount
+    ```
 
 * `W` is the keyword, triggering an action to withdraw
 * `Name` is the name of the client, only alphabetic characters allowed. It contains no spaces. Names are case-insensitive
