@@ -1,29 +1,41 @@
 import sys
 
-Users=dict()
-def executeTransaction(Key, Name, Amount):
-    if Key=='A':
-        if Name in Users:
-            return 'False'
-        else:
-            Users[Name]=Amount
-            return 'True'
-    elif Key=='D':
-        if Name not in Users:
-            return 'False'
-        else:
-            Users[Name]=Users[Name]+Amount
-            return 'True'
-    elif Key=='W':
-        if Name in Users and Amount<=Users[Name]:
-            Users[Name]=Users[Name]-Amount
-            return 'True'
-        else:
-            return 'False'
-    else:
-        return 'Invalid'
 
+class Users():
+
+    def __init__(self):
+        self.data = dict()
+
+    def addAccount(self, Name, Amount):
+        if Name in self.data:
+            return 'False'
+        else:
+            self.data[Name] = Amount
+            return 'True'
+
+    def depositMoney(self, Name, Amount):
+        if Name not in self.data:
+            return 'False'
+        else:
+            self.data[Name] = self.data[Name] + Amount
+            return 'True'
+
+    def withdrawMoney(self, Name, Amount):
+        if Name in self.data and Amount <= self.data[Name]:
+            self.data[Name] = self.data[Name] - Amount
+            return 'True'
+        else:
+            return 'False'
+
+sampleData = Users()
 for line in sys.stdin:
-    Key,Name,Amount=line.strip().split(' ')
-    Amount=float(Amount)
-    print executeTransaction(Key, Name, Amount)
+    Key, Name, Amount = line.strip().split(' ')
+    Amount = float(Amount)
+    if Key == 'A':
+        print sampleData.addAccount(Name, Amount)
+    elif Key == 'D':
+        print sampleData.depositMoney(Name, Amount)
+    elif Key == 'W':
+        print sampleData.withdrawMoney(Name, Amount)
+    else:
+        print 'Invalid'
