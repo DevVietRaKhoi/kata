@@ -2,49 +2,75 @@ import java.util.*;
 
 public class Week0003 {
 
+    private static final String ADD_NEW_CLIENT = "A";
+    private static final String DEPOSIT_MONEY = "D";
+    private static final String WITHDRAW_MONEY = "W";
+
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
-        ArrayList<String> stringRequest = new ArrayList<String>();
-        ArrayList<ProcessStringRequest> processRequests = new ArrayList<ProcessStringRequest>();
         HashMap<String, Client> clients = new HashMap<String, Client>();
         ArrayList<String> output = new ArrayList<String>();
 
         for (int i = 0; scan.hasNext(); i++) {
-            stringRequest.add(scan.nextLine());
-            processRequests.add(new ProcessStringRequest(stringRequest.get(i)));
+            processRequest(new ProcessStringRequest(scan.nextLine()), clients, output);
         }
         scan.close();
-
-        processRequest(processRequests, clients, output);
 
         output.forEach(System.out::println);
     }
 
-    static void processRequest(ArrayList<ProcessStringRequest> processRequests,
+    static void processRequest(ProcessStringRequest processStringRequest,
                                HashMap<String, Client> clients,
                                ArrayList<String> output) {
-        for (ProcessStringRequest value : processRequests) {
-            if (Objects.equals(value.getDefineRequest(), "A")) {
-                if (clients.get(value.getName()) == null) {
-                    clients.put(value.getName(), new Client(value.getName(), value.getAmount()));
-                    output.add("True");
-                } else output.add("False");
-            } else if (Objects.equals(value.getDefineRequest(), "D")) {
-                if (clients.get(value.getName()) != null) {
-                    clients.get(value.getName()).deposit(value.getAmount());
-                    output.add("True");
-                } else output.add("False");
-            } else if (Objects.equals(value.getDefineRequest(), "W")) {
-                if (clients.get(value.getName()) != null
-                        && clients.get(value.getName()).getAmount() > value.getAmount()) {
-                    clients.get(value.getName()).withdraw(value.getAmount());
-                    output.add("True");
-                } else output.add("False");
-            } else {
-                output.add("Invalid");
+
+            switch (processStringRequest.getDefineRequest()) {
+                case ADD_NEW_CLIENT: {
+                    if (clients.get(processStringRequest.getName()) == null
+                        && processStringRequest.getAmount() >= 0) {
+
+                        clients.put(processStringRequest.getName(),
+                                    new Client(processStringRequest.getName(),
+                                    processStringRequest.getAmount()));
+                        output.add("True");
+
+                    }
+                    else {
+                        output.add("False");
+                    }
+                    break;
+                }
+                case DEPOSIT_MONEY: {
+                    if (clients.get(processStringRequest.getName()) != null
+                        && processStringRequest.getAmount() > 0) {
+
+                        clients.get(processStringRequest.getName()).deposit(processStringRequest.getAmount());
+                        output.add("True");
+
+                    }
+                    else {
+                        output.add("False");
+                    }
+                    break;
+                }
+                case WITHDRAW_MONEY: {
+                    if (clients.get(processStringRequest.getName()) != null
+                        && clients.get(processStringRequest.getName()).getAmount() > processStringRequest.getAmount()) {
+
+                        clients.get(processStringRequest.getName()).withdraw(processStringRequest.getAmount());
+                        output.add("True");
+
+                    }
+                    else {
+                        output.add("False");
+                    }
+                    break;
+                }
+                default:
+                    output.add("Invalid");
+
             }
-        }
+
     }
 }
 
