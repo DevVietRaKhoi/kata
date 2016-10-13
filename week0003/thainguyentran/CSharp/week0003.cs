@@ -7,21 +7,28 @@ namespace DVRK
     class Program
     {
         public static Dictionary<string, double> clients = new Dictionary<string, double>();
+        const char ACTION_ADDCLIENT = 'A';
+        const char ACTION_DEPOSIT = 'D';
+        const char ACTION_WITHDRAW = 'W';
         static void Main(string[] args)
         {
-            string input = Console.ReadLine();     
-            Console.WriteLine(bankingProcess(input));
+            string input = null;
+            do {
+                input = Console.ReadLine();
+                Console.WriteLine();
+                Console.WriteLine(bankingProcess(input));
+            } while (input != null) ;
         }
         public static string bankingProcess (string input)
         {
-            string[] array = input.Split(' ');
+            string[] keyword = input.Split(' ');
 
-            char Trigger = Convert.ToChar(array[0]);
-            string Name = array[1];
-            double Amount = Convert.ToDouble(array[2]);
+            char Trigger = Convert.ToChar(keyword[0]);
+            string Name = keyword[1];
+            double Amount = Convert.ToDouble(keyword[2]);
             switch (Trigger)
             {
-                case 'A':
+                case ACTION_ADDCLIENT:
                     if (Name.All(char.IsLetter) && Amount > 0)
                         if (!clients.ContainsKey(Name))
                         {
@@ -30,7 +37,7 @@ namespace DVRK
                         }
                         else return ("False");
                     else return ("Invaild");
-                case 'D':
+                case ACTION_DEPOSIT:
                     if (Name.All(char.IsLetter) && Amount > 0)
                         if (clients.ContainsKey(Name))
                         {
@@ -39,7 +46,7 @@ namespace DVRK
                         }
                         else return ("False");
                     else return ("Invaild");
-                case 'W':
+                case ACTION_WITHDRAW:
                     if (Name.All(char.IsLetter) && Amount > 0)
                         if (clients.ContainsKey(Name))
                             if (clients[Name] >= Amount)
