@@ -35,6 +35,7 @@ class Accounts():
 def executeTransaction(accounts, inputTransaction):
     key, name, amount = inputTransaction.strip().split(' ')
     amount = float(amount)
+    name=name.lower()
     if key == ACTION_ADD_ACCOUNT:
         return accounts.addAccount(name, amount)
     elif key == ACTION_DEPOSIT_MONEY:
