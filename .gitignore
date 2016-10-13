@@ -6,4 +6,5 @@
 *.dylib
 *.bat
 *.exe
-
+*.out
+*.class
