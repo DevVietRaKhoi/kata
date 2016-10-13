@@ -1,7 +1,7 @@
 <?php
 
 $bank = Bank::getInstance();
-$bank->welcome();
+$bank->run();
 
 class Account
 {
@@ -14,7 +14,7 @@ class Account
 	}
 
 	public function withdraw($amount) {
-		if ($amount < 0 || $amount > $this->_money)
+		if ($amount <= 0 || $amount > $this->_money)
 			return false;
 		$this->_money -= $amount;
 		return true;
@@ -47,12 +47,14 @@ class Account
 class Bank
 {
 	private $_accounts;
-	private $_keywords;
+    const ACTION_ADD_CLIENT = 'A';
+    const ACTION_WITHDRAW_CLIENT = 'W';
+    const ACTION_DEPOSITE_CLIENT = 'D';
+
     private static $_instance;
 
     protected function __construct() {
 		$this->_accounts = array();
-		$this->_keywords = array('A', 'D', 'W');
 	}
 
 	public static function getInstance() {
@@ -78,50 +80,50 @@ class Bank
 		return false;
 	}
 
-	public function welcome() {
-		while (1) {
-			$command = dd_read();
+	public function run() {
+		while ($command = dd_read()) {
 
-			if ($command == 'fuck') exit('bye, xD.'.PHP_EOL);
 			if ($command == 'dump') {
 				print_r($this->_accounts);
 				continue;
 			}
 
 			if ($command = $this->parseCommand($command)) {
-				$name = strtolower($command[1]);
-				$amount = (double) $command[2];
-
-				switch ($command[0]) {
-					case 'A':
-						$account =  new Account($command[1], $command[2]);
-						dd_linef( $this->add($account) ? 'True' : 'False' );
+                $name = strtolower($command['accountName']); //this name use as key of bank per account.
+                
+				switch ($command['action']) {
+					case self::ACTION_ADD_CLIENT:
+						$account =  new Account($command['accountName'], $command['amount']);
+                        if ($this->add($account))
+                            dd_linef('True');
+                        else
+                            dd_error('False');
 						break;
 
-					case 'D':
+					case self::ACTION_DEPOSITE_CLIENT:
 						if ($acc = $this->findAccountByName($name)) {
-							if ($acc->deposite($amount)) {
+							if ($acc->deposite($command['amount'])) {
                                 $acc->save();
 								dd_linef('True');
 							} else
-                                dd_linef('False');
+                                dd_error('False');
 						} else
-						    dd_linef('False');
+						    dd_error('False');
 						break;
 
-					case 'W':
+					case self::ACTION_WITHDRAW_CLIENT:
 						if ($acc = $this->findAccountByName($name)) {
-							if ($acc->withdraw($amount)) {
+							if ($acc->withdraw($command['amount'])) {
                                 $acc->save();
 								dd_linef('True');
 							} else
-							    dd_linef('False');
+							    dd_error('False');
 						} else
-						    dd_linef('False');
+						    dd_error('False');
 						break;
 					
 					default:
-						dd_linef('Invalid');
+						dd_error('Invalid');
 						break;
 				}
 			}
@@ -135,24 +137,30 @@ class Bank
 	}
 
 	private function parseCommand($string) {
-		$command = preg_split('/\s+/', $string);
+		$string = preg_split('/\s+/', $string);
 		$errors = array();
 		
-		//just usefull when all commands have 4 arguments
-		if (count($command) != 3) {
+		//just usefull when all commands have 3 arguments
+		if (count($string) != 3) {
 			dd_linef("Wrong structure command!");
 			return false;
 		}
-		if (!in_array($command[0], $this->_keywords))
-			// $errors[] = 'Invalid keyword';
-			$errors[] = 'Invalid';
-		if (!preg_match("/^([a-zA-Z]+)/", $command[1]))
+
+        $command = array();
+        $command['action'] = $string[0];
+        $command['accountName'] = $string[1];
+        $command['amount'] = $string[2];
+
+		if (!in_array($command['action'], $this->getActions()))
+            $errors[] = 'Invalid';
+			// $errors[] = 'Invalid keyword';			
+		if (!preg_match("/^([a-zA-Z]+)/", $command['accountName']))
 			$errors[] = 'Invalid name';
-		if ((double)$command[2]."" != $command[2])
+		if ((double)$command['amount']."" != $command['amount'])
 			$errors[] = 'Invalid amount of money';
 		if (count($errors)) {
 			foreach ($errors as $error)
-				dd_linef($error);
+				dd_error($error);
 			return false;
 		}
 		return $command;
@@ -162,18 +170,21 @@ class Bank
 		return $this->_accounts;
 	}
 
-	public function keywords() {
-		return $this->_keywords;
+	public function getActions() {        
+		return array(self::ACTION_ADD_CLIENT, self::ACTION_DEPOSITE_CLIENT, self::ACTION_WITHDRAW_CLIENT);
 	}
 
 }
 
 //helper function, dd just is my prefix :D
-function dd_line($text) {
+function dd_line($text) { //no new line
 	fwrite(STDOUT, $text);
 }
-function dd_linef($text) {
+function dd_linef($text) { //enter new line
 	fwrite(STDOUT, $text.PHP_EOL);
+}
+function dd_error($text) { //printt error
+    fwrite(STDERR, $text.PHP_EOL);
 }
 function dd_read() {
 	// fflush(STDIN);
