@@ -12,65 +12,81 @@ public class Week0003 {
         HashMap<String, Client> clients = new HashMap<String, Client>();
         ArrayList<String> output = new ArrayList<String>();
 
-        for (int i = 0; scan.hasNext(); i++) {
+        while (scan.hasNext()) {
             processRequest(new ProcessStringRequest(scan.nextLine()), clients, output);
         }
         scan.close();
-
-        output.forEach(System.out::println);
+        for (int i = 0; i < output.size(); i++) {
+            System.out.println(output.get(i));
+        }
     }
 
-    static void processRequest(ProcessStringRequest processStringRequest,
-                               HashMap<String, Client> clients,
-                               ArrayList<String> output) {
+    private static void processRequest(ProcessStringRequest processStringRequest,
+                                       HashMap<String, Client> clients,
+                                       ArrayList<String> output) {
 
             switch (processStringRequest.getDefineRequest()) {
                 case ADD_NEW_CLIENT: {
-                    if (clients.get(processStringRequest.getName()) == null
-                        && processStringRequest.getAmount() >= 0) {
-
-                        clients.put(processStringRequest.getName(),
-                                    new Client(processStringRequest.getName(),
-                                    processStringRequest.getAmount()));
-                        output.add("True");
-
-                    }
-                    else {
-                        output.add("False");
-                    }
+                    addNewClient(processStringRequest, clients, output);
                     break;
                 }
                 case DEPOSIT_MONEY: {
-                    if (clients.get(processStringRequest.getName()) != null
-                        && processStringRequest.getAmount() > 0) {
-
-                        clients.get(processStringRequest.getName()).deposit(processStringRequest.getAmount());
-                        output.add("True");
-
-                    }
-                    else {
-                        output.add("False");
-                    }
+                    depositMoney(processStringRequest, clients, output);
                     break;
                 }
                 case WITHDRAW_MONEY: {
-                    if (clients.get(processStringRequest.getName()) != null
-                        && clients.get(processStringRequest.getName()).getAmount() > processStringRequest.getAmount()) {
-
-                        clients.get(processStringRequest.getName()).withdraw(processStringRequest.getAmount());
-                        output.add("True");
-
-                    }
-                    else {
-                        output.add("False");
-                    }
+                    withdrawMoney(processStringRequest, clients, output);
                     break;
                 }
                 default:
                     output.add("Invalid");
 
             }
+    }
 
+    private static void addNewClient(ProcessStringRequest processStringRequest,
+                                     HashMap<String, Client> clients,
+                                     ArrayList<String> output) {
+        if (clients.get(processStringRequest.getName()) == null
+                && processStringRequest.getAmount() > 0) {
+
+            clients.put(processStringRequest.getName(),
+                    new Client(processStringRequest.getName(),
+                            processStringRequest.getAmount()));
+            output.add("True");
+        }
+        else {
+            output.add("False");
+        }
+    }
+
+    private static void depositMoney(ProcessStringRequest processStringRequest,
+                                     HashMap<String, Client> clients,
+                                     ArrayList<String> output) {
+        if (clients.get(processStringRequest.getName()) != null
+                && processStringRequest.getAmount() > 0) {
+
+            clients.get(processStringRequest.getName()).deposit(processStringRequest.getAmount());
+            output.add("True");
+        }
+        else {
+            output.add("False");
+        }
+    }
+    
+    private static void withdrawMoney(ProcessStringRequest processStringRequest,
+                                      HashMap<String, Client> clients,
+                                      ArrayList<String> output) {
+        if (clients.get(processStringRequest.getName()) != null
+                && processStringRequest.getAmount() > 0
+                && clients.get(processStringRequest.getName()).getAmount() > processStringRequest.getAmount()) {
+
+            clients.get(processStringRequest.getName()).withdraw(processStringRequest.getAmount());
+            output.add("True");
+        }
+        else {
+            output.add("False");
+        }
     }
 }
 
