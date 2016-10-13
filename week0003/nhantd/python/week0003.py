@@ -19,14 +19,14 @@ class Accounts():
 
     def depositMoney(self, name, amount):
         if name in self.data and amount > 0:
-            self.data[name] = self.data[name] + amount
+            self.data[name] += amount
             return 'True'
         else:
             return 'False'
 
     def withdrawMoney(self, name, amount):
         if name in self.data and amount > 0 and amount <= self.data[name]:
-            self.data[name] = self.data[name] - amount
+            self.data[name] -= amount
             return 'True'
         else:
             return 'False'
