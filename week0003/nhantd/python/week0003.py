@@ -6,37 +6,40 @@ class Accounts():
     def __init__(self):
         self.data = dict()
 
-    def addAccount(self, Name, Amount):
-        if Name not in self.data and Amount >= 0:
-            self.data[Name] = Amount
+    def addAccount(self, name, amount):
+        if name not in self.data and amount >= 0:
+            self.data[name] = amount
             return 'True'
         else:
             return 'False'
 
-    def depositMoney(self, Name, Amount):
-        if Name in self.data and Amount >= 0:
-            self.data[Name] = self.data[Name] + Amount
+    def depositMoney(self, name, amount):
+        if name in self.data and amount >= 0:
+            self.data[name] = self.data[name] + amount
             return 'True'
         else:
             return 'False'
 
-    def withdrawMoney(self, Name, Amount):
-        if Name in self.data and Amount >= 0 and Amount <= self.data[Name]:
-            self.data[Name] = self.data[Name] - Amount
+    def withdrawMoney(self, name, amount):
+        if name in self.data and amount >= 0 and amount <= self.data[name]:
+            self.data[name] = self.data[name] - amount
             return 'True'
         else:
             return 'False'
+    def executeTransaction(self, inputTransaction):
+        key, name, amount = inputTransaction.strip().split(' ')
+        amount = float(amount)
+        if key == 'A':
+            return self.addAccount(name, amount)
+        elif key == 'D':
+            return self.depositMoney(name, amount)
+        elif key == 'W':
+            return self.withdrawMoney(name, amount)
+        else:
+            return 'Invalid'
+
 
 if __name__ == "__main__":
     sampleAccounts = Accounts()
     for line in sys.stdin:
-        Key, Name, Amount = line.strip().split(' ')
-        Amount = float(Amount)
-        if Key == 'A':
-            print sampleAccounts.addAccount(Name, Amount)
-        elif Key == 'D':
-            print sampleAccounts.depositMoney(Name, Amount)
-        elif Key == 'W':
-            print sampleAccounts.withdrawMoney(Name, Amount)
-        else:
-            print 'Invalid'
+        print sampleAccounts.executeTransaction(line)
