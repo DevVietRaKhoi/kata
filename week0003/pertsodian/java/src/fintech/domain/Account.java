@@ -1,10 +1,10 @@
-package fin.tech.domain;
+package fintech.domain;
 
 import java.math.BigDecimal;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.Consumer;
 
-import fin.tech.exceptions.InsufficientBalanceException;
+import fintech.exceptions.InsufficientBalanceException;
 
 public class Account {
 

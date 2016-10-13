@@ -1,9 +1,11 @@
-package fin.tech.domain;
+package fintech.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
+
+import fintech.domain.Action;
 
 public class ActionTest {
 

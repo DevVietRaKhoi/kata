@@ -1,4 +1,4 @@
-package fin.tech.domain;
+package fintech.domain;
 
 public enum Response {
   SUCCESSFUL("True"), FAILED("False"), INVALID("Invalid");

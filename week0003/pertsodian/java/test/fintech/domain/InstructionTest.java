@@ -1,4 +1,4 @@
-package fin.tech.domain;
+package fintech.domain;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -6,6 +6,9 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import fintech.domain.Action;
+import fintech.domain.Instruction;
 
 public class InstructionTest {
   

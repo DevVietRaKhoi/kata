@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-import fin.tech.domain.Response;
-import fin.tech.processors.AccountManager;
-import fin.tech.processors.BankAccountApp;
+import fintech.domain.Response;
+import fintech.processors.AccountManager;
+import fintech.processors.BankAccountApp;
 
 public class week0003 {
 

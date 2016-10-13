@@ -1,4 +1,4 @@
-package fin.tech.domain;
+package fintech.domain;
 
 public class Instruction {
   

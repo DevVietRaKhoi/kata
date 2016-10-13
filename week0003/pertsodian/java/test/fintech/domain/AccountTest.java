@@ -1,4 +1,4 @@
-package fin.tech.domain;
+package fintech.domain;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,7 +8,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import fin.tech.exceptions.InsufficientBalanceException;
+import fintech.domain.Account;
+import fintech.exceptions.InsufficientBalanceException;
 
 public class AccountTest {
 

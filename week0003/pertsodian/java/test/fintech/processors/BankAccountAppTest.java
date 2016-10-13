@@ -1,4 +1,4 @@
-package fin.tech.processors;
+package fintech.processors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -6,7 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import fin.tech.domain.Response;
+import fintech.domain.Response;
+import fintech.processors.AccountManager;
+import fintech.processors.BankAccountApp;
 
 public class BankAccountAppTest {
 

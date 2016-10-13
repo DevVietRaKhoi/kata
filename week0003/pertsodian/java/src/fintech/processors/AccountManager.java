@@ -1,11 +1,11 @@
-package fin.tech.processors;
+package fintech.processors;
 
 import java.math.BigDecimal;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import fin.tech.domain.Account;
-import fin.tech.exceptions.InsufficientBalanceException;
+import fintech.domain.Account;
+import fintech.exceptions.InsufficientBalanceException;
 
 public class AccountManager {
 

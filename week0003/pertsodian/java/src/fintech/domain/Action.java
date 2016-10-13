@@ -1,4 +1,4 @@
-package fin.tech.domain;
+package fintech.domain;
 
 import java.util.Arrays;
 import java.util.Optional;

@@ -1,7 +1,7 @@
-package fin.tech.processors;
+package fintech.processors;
 
-import fin.tech.domain.Instruction;
-import fin.tech.domain.Response;
+import fintech.domain.Instruction;
+import fintech.domain.Response;
 
 public class BankAccountApp {
   
