@@ -1,53 +1,57 @@
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace DVRK
 {
     class Program
     {
+        public static Dictionary<string, double> clients = new Dictionary<string, double>();
         static void Main(string[] args)
         {
-            Dictionary<string, double> clients = new Dictionary<string, double>();
-            string[] temp = Console.ReadLine().Split(' ');
-            switch(Convert.ToChar(temp[0]))
+            string input = Console.ReadLine();     
+            Console.WriteLine(bankingProcess(input));
+        }
+        public static string bankingProcess (string input)
+        {
+            string[] array = input.Split(' ');
+
+            char Trigger = Convert.ToChar(array[0]);
+            string Name = array[1];
+            double Amount = Convert.ToDouble(array[2]);
+            switch (Trigger)
             {
                 case 'A':
-                    if (temp[1].All(char.IsLetter) && Convert.ToDouble(temp[2]) > 0)
-                        if (!clients.ContainsKey(temp[1]))
+                    if (Name.All(char.IsLetter) && Amount > 0)
+                        if (!clients.ContainsKey(Name))
                         {
-                            clients.Add(temp[1], Convert.ToDouble(temp[2]));
-                            Console.WriteLine("True");
+                            clients.Add(Name, Amount);
+                            return("True");
                         }
-                        else Console.WriteLine("False");
-                    else Console.WriteLine("Invaild");
-                    break;
+                        else return ("False");
+                    else return ("Invaild");
                 case 'D':
-                    if (temp[1].All(char.IsLetter) && Convert.ToDouble(temp[2]) > 0)
-                        if (clients.ContainsKey(temp[1]))
+                    if (Name.All(char.IsLetter) && Amount > 0)
+                        if (clients.ContainsKey(Name))
                         {
-                            clients[temp[1]] += Convert.ToDouble(temp[2]);
-                            Console.WriteLine("True");
+                            clients[Name] += Amount;
+                            return ("True");
                         }
-                        else Console.WriteLine("False");
-                    else Console.WriteLine("Invaild");
-                    break;
+                        else return ("False");
+                    else return ("Invaild");
                 case 'W':
-                    if (temp[1].All(char.IsLetter) && Convert.ToDouble(temp[2]) > 0)
-                        if (clients.ContainsKey(temp[1]))
-                            if (clients[temp[1]] >= Convert.ToDouble(temp[2]))
+                    if (Name.All(char.IsLetter) && Amount > 0)
+                        if (clients.ContainsKey(Name))
+                            if (clients[Name] >= Amount)
                             {
-                                clients[temp[1]] -= Convert.ToDouble(temp[2]);
-                                Console.WriteLine("True");
+                                clients[Name] -= Amount;
+                                return ("True");
                             }
-                            else Console.WriteLine("False");
-                        else Console.WriteLine("False");
-                    else Console.WriteLine("False");
-                    break;
+                            else return ("False");
+                        else return ("False");
+                    else return ("False");
                 default:
-                    Console.WriteLine("Invaild");
-                    break;
+                    return ("Invaild");
             }
         }
     }
