@@ -1,8 +1,8 @@
 <?php
-	$i = 1;
-	$fizz = 'fizz'.'<br/>';
-	$buzz = 'buzz'.'<br/>';
-	$a = 3; $b =5;
-	$ab = $a*$b;
-	while ($i++ < 100)
-		echo $i%$ab ? $i%$a ? $i%$b ? false : $buzz : $fizz : $fizz.$buzz;
+	$i = 0;
+	while ($i++ < 100) {
+		if ($i % 3 == 0)
+			fwrite(STDOUT, "Fizz".PHP_EOL);
+		if ($i % 5 == 0)
+			fwrite(STDOUT, "Buzz".PHP_EOL);
+	}
