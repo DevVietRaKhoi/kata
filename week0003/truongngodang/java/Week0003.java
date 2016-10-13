@@ -3,14 +3,10 @@ import java.util.*;
 public class Week0003 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        HashMap<String, Client> clientHashMap = new HashMap<String, Client>();
-        ArrayList<String> output = new ArrayList<String>();
-        ClientManagement clientManagement = new ClientManagement(clientHashMap);
+        HashMap<String, Client> clientList = new HashMap<String, Client>();
+        ClientManagement clientManagement = new ClientManagement(clientList);
         while (scan.hasNext()) {
-            output.add(clientManagement.processRequest(scan.nextLine()));
-        }
-        for (int i = 0; i < output.size(); i++) {
-            System.out.println(output.get(i));
+            System.out.println(clientManagement.processRequest(scan.nextLine()));
         }
     }
 }
@@ -21,22 +17,22 @@ class ClientManagement {
     private static final String DEPOSIT_MONEY = "D";
     private static final String WITHDRAW_MONEY = "W";
 
-    private HashMap<String, Client> clientHashMap;
+    private HashMap<String, Client> clientList;
 
-    public ClientManagement(HashMap<String, Client> clientHashMap) {
-        this.clientHashMap = clientHashMap;
+    public ClientManagement(HashMap<String, Client> clientList) {
+        this.clientList = clientList;
     }
 
     public boolean addNewClient(String name, Double money) {
-        if (this.clientHashMap.get(name) == null) {
-            this.clientHashMap.put(name, new Client(name, money));
+        if (this.clientList.get(name) == null) {
+            this.clientList.put(name, new Client(name, money));
             return true;
         }
         return false;
     }
 
     public String processRequest(String request) {
-        ProcessString processString = new ProcessString(request);
+        ProcessStringRequest processString = new ProcessStringRequest(request);
         switch (processString.getDefineRequest()) {
             case ADD_NEW_CLIENT : {
                 if (addNewClient(processString.getName(), processString.getMoney())) {
@@ -46,16 +42,16 @@ class ClientManagement {
                 }
             }
             case DEPOSIT_MONEY : {
-                if (this.clientHashMap.get(processString.getName()) != null) {
-                    this.clientHashMap.get(processString.getName()).depositMoney(processString.getMoney());
+                if (this.clientList.get(processString.getName()) != null) {
+                    this.clientList.get(processString.getName()).depositMoney(processString.getMoney());
                     return "True";
                 } else {
                     return "False";
                 }
             }
             case WITHDRAW_MONEY : {
-                if (this.clientHashMap.get(processString.getName()) != null) {
-                    this.clientHashMap.get(processString.getName()).withdrawMoney(processString.getMoney());
+                if (this.clientList.get(processString.getName()) != null) {
+                    this.clientList.get(processString.getName()).withdrawMoney(processString.getMoney());
                     return "True";
                 } else {
                     return "False";
@@ -112,18 +108,18 @@ class Client {
     }
 }
 
-class ProcessString {
+class ProcessStringRequest {
     private String defineRequest;
     private String name;
     private double money;
 
-    public ProcessString(String defineRequest, String name, double amount) {
+    public ProcessStringRequest(String defineRequest, String name, double amount) {
         this.defineRequest = defineRequest;
         this.name = name;
         this.money = amount;
     }
 
-    public ProcessString(String string) {
+    public ProcessStringRequest(String string) {
         String[] value = string.split(" ");
         this.defineRequest = value[0];
         this.name = value[1];
