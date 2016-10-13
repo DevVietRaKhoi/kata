@@ -10,22 +10,23 @@ namespace DVRK
         const char ACTION_ADDCLIENT = 'A';
         const char ACTION_DEPOSIT = 'D';
         const char ACTION_WITHDRAW = 'W';
+        
         static void Main(string[] args)
         {
             string input = null;
             do {
                 input = Console.ReadLine();
-                Console.WriteLine();
                 Console.WriteLine(bankingProcess(input));
             } while (input != null) ;
         }
+        
         public static string bankingProcess (string input)
         {
             string[] keyword = input.Split(' ');
-
             char Trigger = Convert.ToChar(keyword[0]);
             string Name = keyword[1];
             double Amount = Convert.ToDouble(keyword[2]);
+            
             switch (Trigger)
             {
                 case ACTION_ADDCLIENT:
