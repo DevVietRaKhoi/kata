@@ -26,6 +26,7 @@ class Accounts():
             return 'True'
         else:
             return 'False'
+
     def executeTransaction(self, inputTransaction):
         key, name, amount = inputTransaction.strip().split(' ')
         amount = float(amount)
