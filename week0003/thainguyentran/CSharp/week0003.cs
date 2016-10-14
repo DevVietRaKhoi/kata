@@ -13,12 +13,12 @@ namespace DVRK
 
         static void Main(string[] args)
         {
-            string input = null;
+            string input = "";
             do {
                 input = Console.ReadLine();
-                if (input != string.Empty)
+                if (input != "")
                     Console.WriteLine(bankingProcess(input));
-            } while (input != string.Empty) ;
+            } while (input != "") ;
         }
 
         public static string bankingProcess (string input)
