@@ -6,4 +6,6 @@
 *.dylib
 *.bat
 *.exe
-
+*.out
+*.class
+*.DS_Store
