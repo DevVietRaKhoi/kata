@@ -49,7 +49,7 @@ class Bank
     private $_accounts;
     const ACTION_ADD_CLIENT = 'A';
     const ACTION_WITHDRAW_CLIENT = 'W';
-    const ACTION_DEPOSITE_CLIENT = 'D';
+    const ACTION_DEPOSIT_CLIENT = 'D';
 
     private static $_instance;
 
@@ -97,18 +97,18 @@ class Bank
                         if ($this->add($account))
                             dd_linef('True');
                         else
-                            dd_error('False');
+                            dd_linef('False');
                         break;
 
-                    case self::ACTION_DEPOSITE_CLIENT:
+                    case self::ACTION_DEPOSIT_CLIENT:
                         if ($acc = $this->findAccountByName($name)) {
                             if ($acc->deposite($command['amount'])) {
                                 $acc->save();
                                 dd_linef('True');
                             } else
-                                dd_error('False');
+                                dd_linef('False');
                         } else
-                            dd_error('False');
+                            dd_linef('False');
                         break;
 
                     case self::ACTION_WITHDRAW_CLIENT:
@@ -117,13 +117,13 @@ class Bank
                                 $acc->save();
                                 dd_linef('True');
                             } else
-                                dd_error('False');
+                                dd_linef('False');
                         } else
-                            dd_error('False');
+                            dd_linef('False');
                         break;
                     
                     default:
-                        dd_error('Invalid');
+                        dd_linef('Invalid');
                         break;
                 }
             }
@@ -142,7 +142,7 @@ class Bank
         
         //just usefull when all commands have 3 arguments
         if (count($string) != 3) {
-            dd_linef("Wrong structure command!");
+            dd_error("Wrong structure command!");
             return false;
         }
 
@@ -153,7 +153,6 @@ class Bank
 
         if (!in_array($command['action'], $this->getActions()))
             $errors[] = 'Invalid';
-            // $errors[] = 'Invalid keyword';            
         if (!preg_match("/^([a-zA-Z]+)/", $command['accountName']))
             $errors[] = 'Invalid name';
         if ((double)$command['amount']."" != $command['amount'])
@@ -171,7 +170,7 @@ class Bank
     }
 
     public function getActions() {        
-        return array(self::ACTION_ADD_CLIENT, self::ACTION_DEPOSITE_CLIENT, self::ACTION_WITHDRAW_CLIENT);
+        return array(self::ACTION_ADD_CLIENT, self::ACTION_DEPOSIT_CLIENT, self::ACTION_WITHDRAW_CLIENT);
     }
 
 }
