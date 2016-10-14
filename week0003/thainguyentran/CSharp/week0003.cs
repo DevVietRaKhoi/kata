@@ -6,27 +6,28 @@ namespace DVRK
 {
     class Program
     {
-        public static Dictionary<string, double> clients = new Dictionary<string, double>();
+        public static Dictionary<string, double> clients = new Dictionary<string, double>(StringComparer.OrdinalIgnoreCase);
         const char ACTION_ADDCLIENT = 'A';
         const char ACTION_DEPOSIT = 'D';
         const char ACTION_WITHDRAW = 'W';
-        
+
         static void Main(string[] args)
         {
             string input = null;
             do {
                 input = Console.ReadLine();
-                Console.WriteLine(bankingProcess(input));
-            } while (input != null) ;
+                if (input != string.Empty)
+                    Console.WriteLine(bankingProcess(input));
+            } while (input != string.Empty) ;
         }
-        
+
         public static string bankingProcess (string input)
         {
             string[] keyword = input.Split(' ');
             char Trigger = Convert.ToChar(keyword[0]);
             string Name = keyword[1];
             double Amount = Convert.ToDouble(keyword[2]);
-            
+
             switch (Trigger)
             {
                 case ACTION_ADDCLIENT:
