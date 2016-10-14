@@ -1,15 +1,14 @@
 package fintech.processors;
 
-import java.math.BigDecimal;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.HashMap;
+import java.util.Map;
 
 import fintech.domain.Account;
 import fintech.exceptions.InsufficientBalanceException;
 
 public class AccountManager {
 
-  private final ConcurrentMap<String, Account> accounts = new ConcurrentHashMap<>();
+  private final Map<String, Account> accounts = new HashMap<>();
 
   public AccountManager() {
     this.accounts.clear();
@@ -57,16 +56,6 @@ public class AccountManager {
     }
     catch (IllegalArgumentException | InsufficientBalanceException ex) {
       return false;
-    }
-  }
-  
-  public BigDecimal getCurrentBalance(String name) {
-    try {
-      Account account = accounts.get(getAccountKey(name));
-      return account != null ? account.getCurrentBalance() :  null;
-    }
-    catch (IllegalArgumentException ex) {
-      return null;
     }
   }
 

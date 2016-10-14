@@ -1,8 +1,6 @@
 package fintech.domain;
 
 import java.math.BigDecimal;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import java.util.function.Consumer;
 
 import fintech.exceptions.InsufficientBalanceException;
 
@@ -10,7 +8,6 @@ public class Account {
 
   private final String name;
   private BigDecimal balanceAmount;
-  private ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
   
   public Account(String name, String initialAmount) {
     if (name == null)
@@ -22,23 +19,17 @@ public class Account {
   public String getName() {
     return name;
   }
-
+  
   public BigDecimal getCurrentBalance() {
-    try {
-      lock.readLock().lock();
-      return balanceAmount;
-    }
-    finally {
-      lock.readLock().unlock();
-    }
+    return balanceAmount;
   }
   
   public void deposit(String amount) {
-    executeInWriteLock(account -> account.adjustBalance(parseAmount(amount)));
+    adjustBalance(parseAmount(amount));
   }
   
   public void withdraw(String amount) {
-    executeInWriteLock(account -> account.adjustBalance(parseAmount(amount).negate()));
+    adjustBalance(parseAmount(amount).negate());
   }
   
   private void adjustBalance(BigDecimal amount) {
@@ -47,18 +38,8 @@ public class Account {
       throw new InsufficientBalanceException();
     balanceAmount = adjustedBalance; 
   }
-  
-  protected void executeInWriteLock(Consumer<Account> consumer) {
-    try {
-      lock.writeLock().lock();
-      consumer.accept(this);
-    }
-    finally {
-      lock.writeLock().unlock();
-    }
-  }
 
-  protected BigDecimal parseAmount(String amountStr) {
+  private BigDecimal parseAmount(String amountStr) {
     try {
       BigDecimal amount = new BigDecimal(amountStr);
       if (isNegative(amount))
