@@ -6,13 +6,14 @@ namespace DVRK
 {
     class Program
     {
-        public static Dictionary<string, double> clients = new Dictionary<string, double>(StringComparer.OrdinalIgnoreCase);
+        public static Dictionary<string, double> clients;
         const char ACTION_ADDCLIENT = 'A';
         const char ACTION_DEPOSIT = 'D';
         const char ACTION_WITHDRAW = 'W';
 
         static void Main(string[] args)
         {
+            clients = new Dictionary<string, double>(StringComparer.OrdinalIgnoreCase);
             string input = "";
             do {
                 input = Console.ReadLine();
@@ -27,6 +28,7 @@ namespace DVRK
             char Trigger = Convert.ToChar(keyword[0]);
             string Name = keyword[1];
             double Amount = Convert.ToDouble(keyword[2]);
+            
 
             switch (Trigger)
             {
