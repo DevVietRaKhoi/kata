@@ -73,7 +73,7 @@ class Action
     /**
      * @return string
      */
-    public function getOutput()
+    public function performAction()
     {
         return $this->output;
     }
