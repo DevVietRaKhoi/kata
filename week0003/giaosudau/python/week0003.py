@@ -18,7 +18,7 @@ class Client():
             return False
 
     def withdraw(self, amount):
-        if amount <= self.amount:
+        if 0 < amount <= self.amount:
             self.amount -= amount
             return True
         else:
