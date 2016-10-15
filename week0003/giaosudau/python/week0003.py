@@ -33,7 +33,7 @@ class Bank(object):
         for line in input:
             data = line.split(" ")
             action = data[0]
-            name = data[1]
+            name = data[1].lower()
             amount = float(data[2])
             if amount > 0:
                 if action == ACTION_ADD_CLIENT:
