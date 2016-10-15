@@ -46,7 +46,7 @@ class AccountManager
      */
     public function addAccount($name, $amount)
     {
-        if (ctype_alpha($name) && !$this->findOrFail($name) && is_numeric($amount) && $amount >= 0) {
+        if (ctype_alpha($name) && !$this->findOrFail($name) && is_numeric($amount) && $amount > 0) {
             $newAccount = new Account($name, $amount);
             $this->accounts[$this->getKeyName($name)] = $newAccount;
             return true;
