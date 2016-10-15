@@ -1,83 +1,82 @@
 <?php
+/*
+ * This file is part of the FinTech.
+ */
+
 namespace FinTech;
 
+/**
+ * Class AccountManager
+ * @package FinTech
+ */
 class AccountManager
 {
+    /**
+     * Store Accounts
+     * @var array
+     */
     protected $accounts = [];
-    
-    const ACTION_ADD_CLIENT = 'A';
-    const ACTION_DEPOSIT_MONEY = 'D';
-    const ACTION_WITHDRAW_MONEY = 'W';
 
-    public function makeAction($action, $name, $amount)
-    {
-        switch ($action) {
-            case self::ACTION_ADD_CLIENT:
-                return $this->addAccount($name, $amount);
-                break;
-            case self::ACTION_DEPOSIT_MONEY:
-                return $this->depositMoney($name, $amount);
-                break;
-            case self::ACTION_WITHDRAW_MONEY:
-                return $this->withdrawMoney($name, $amount);
-                break;
-            default:
-                return 'Invalid';
-                break;
-        }
-    }
-
-    public function getLog()
-    {
-        return $this->log;
-    }
-
+    /**
+     * @param $name
+     * @return string
+     */
     protected function getKeyName($name)
     {
         return strtolower($name);
     }
 
-    protected function checkAccountExist($name)
+    /**
+     * @param $name
+     * @return bool|mixed
+     */
+    protected function findOrFail($name)
     {
-        return array_key_exists($this->getKeyName($name), $this->accounts);
+        $keyName = $this->getKeyName($name);
+        if (array_key_exists($keyName, $this->accounts)) {
+            return $this->accounts[$keyName];
+        }
+        return false;
     }
 
-    protected function checkAmountType($amount)
+    /**
+     * @param $name
+     * @param $amount
+     * @return bool
+     */
+    public function addAccount($name, $amount)
     {
-        return (is_numeric($amount));
-    }
-
-    protected function addAccount($name, $amount)
-    {
-        if (ctype_alpha($name) && !$this->checkAccountExist($name) && $this->checkAmountType($amount) && $amount >= 0) {
+        if (ctype_alpha($name) && !$this->findOrFail($name) && is_numeric($amount) && $amount >= 0) {
             $newAccount = new Account($name, $amount);
             $this->accounts[$this->getKeyName($name)] = $newAccount;
-            return 'True';
-        } else {
-            return 'False';
+            return true;
         }
+        return false;
     }
 
-    protected function depositMoney($name, $amount)
+    /**
+     * @param $name
+     * @param $amount
+     * @return bool
+     */
+    public function depositMoney($name, $amount)
     {
-        if ($this->checkAmountType($amount) && $amount > 0 && $this->checkAccountExist($name)) {
-            $this->accounts[$this->getKeyName($name)]->deposit($amount);
-            return 'True';
-        } else {
-            return 'False';
+        if ($account = $this->findOrFail($name)) {
+            return $account->deposit($amount);
         }
+        return false;
     }
 
-    protected function withdrawMoney($name, $amount)
+    /**
+     * @param $name
+     * @param $amount
+     * @return bool
+     */
+    public function withdrawMoney($name, $amount)
     {
-        if ($this->checkAmountType($amount) && $amount > 0 && $this->checkAccountExist($name)) {
-            if ($this->accounts[$this->getKeyName($name)]->withdraw($amount)) {
-                return 'True';
-            } else {
-                return 'False';
-            }
-        } else {
-            return 'False';
+        if ($account = $this->findOrFail($name)) {
+            return $account->withdraw($amount);
         }
+        return false;
     }
 }
