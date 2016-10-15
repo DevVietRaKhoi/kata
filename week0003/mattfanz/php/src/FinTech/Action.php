@@ -31,11 +31,6 @@ class Action
      */
     protected $accountManager;
 
-    /**
-     * @var string
-     */
-    protected $output;
-
     const ACTION_ADD_CLIENT = 'A';
     const ACTION_DEPOSIT_MONEY = 'D';
     const ACTION_WITHDRAW_MONEY = 'W';
@@ -53,21 +48,6 @@ class Action
         $this->name = $name;
         $this->amount = $amount;
         $this->accountManager = $accountManager;
-        
-        switch ($this->action) {
-            case self::ACTION_ADD_CLIENT:
-                $this->output = $this->actionAddAccount();
-                break;
-            case self::ACTION_DEPOSIT_MONEY:
-                $this->output = $this->actionDepositMoney();
-                break;
-            case self::ACTION_WITHDRAW_MONEY:
-                $this->output = $this->actionWithdrawMoney();
-                break;
-            default:
-                $this->output = 'Invalid';
-                break;
-        }
     }
 
     /**
@@ -75,7 +55,20 @@ class Action
      */
     public function performAction()
     {
-        return $this->output;
+        switch ($this->action) {
+            case self::ACTION_ADD_CLIENT:
+                return $this->actionAddAccount();
+                break;
+            case self::ACTION_DEPOSIT_MONEY:
+                return $this->actionDepositMoney();
+                break;
+            case self::ACTION_WITHDRAW_MONEY:
+                return $this->actionWithdrawMoney();
+                break;
+            default:
+                return 'Invalid';
+                break;
+        }
     }
 
     /**
