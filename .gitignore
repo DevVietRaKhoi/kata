@@ -1,0 +1,11 @@
+*.o
+*.pyc
+*.pyd
+*.so
+*.a
+*.dylib
+*.bat
+*.exe
+*.out
+*.class
+*.DS_Store
