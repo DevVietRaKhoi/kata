@@ -44,6 +44,7 @@ Now you have launched a new FinTech start-up that will shake grounds with its ne
 
     * If an action/command was successful, print to STDOUT `True`, followed by a newline
     * If an action/command failed, print to STDOUT `False`, followed by a newline
+    * If the amount is non-positive, print to STDOUT `False`, followed by a newline
     * Reject unrecognized keywords by printing to STDOUT `Invalid`, followed by a newline
 
 ## Submission
@@ -53,10 +54,18 @@ Now you have launched a new FinTech start-up that will shake grounds with its ne
 * You must implement all required tasks
 * Make sure to test against the provided test case `test_case_01.input` before submitting
 
-Sample command to test:
+Sample commands to test:
 
 ```
 diff <(python week0003.py < test_case_01.input) test_case_01.output
+
+diff <(php week0003.php < test_case_01.input) test_case_01.output
+
+diff <(./week0003.exe < test_case_01.input) test_case_01.output
+
+diff <(java week0003 < test_case_01.input) test_case_01.output
+
+diff <(./week0003.sh < test_case_01.input) test_case_01.output
 ```
 
 ### Folder structure
