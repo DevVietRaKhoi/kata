@@ -31,6 +31,7 @@ Now you are in event management business. You have 2 events taking place on the 
     ...
     ```
 
+    * Print to STDOUT
     * Print the guests who registered for both events in the format above
     * Note that there are no more `,` in the output and emails are wrapped in `<>`
     * Sort the guests by first name and then by the last name, and then by email
