@@ -47,12 +47,10 @@ def week4_match_sources():
 			if source1[key]['fname'] == source2[key]['fname'] and source1[key]['lname'] == source2[key]['lname']:
 				yield(source1[key])
 
-def week4_output(output_file='guests.output'):
+def week4_output():
 	'''Outout list of duplicate guests to file'''
-	f = open(output_file,'w')
 	for person in week4_match_sources():
 		print('{:s} {:s} <{:s}>'.format(str(person['fname']),str(person['lname']),str(person['email'])))
-	f.close()
 
 if __name__ == "__main__":
-	week4_output('guest.output')
+	week4_output()
