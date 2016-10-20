@@ -66,8 +66,8 @@ class ReaderCVS {
             BufferedReader br = new BufferedReader(new FileReader(new File(csvFilename)));
             for (int i = 0; (line = br.readLine()) != null; i++) {
                 if (i > 0) {
-                    String[] guest = line.split(cvsSplitBy);
-                    guests.add(new Guest(guest[0], guest[1], guest[2]));
+                    String[] infos = line.split(cvsSplitBy);
+                    guests.add(new Guest(infos[0], infos[1], infos[2]));
                 }
             }
         } catch (IOException e) {
