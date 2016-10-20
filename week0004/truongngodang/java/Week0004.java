@@ -8,8 +8,8 @@ import java.util.Objects;
 public class Week0004 {
 
     public static void main(String[] args) {
-        ArrayList<Guest> guestsEvent1 = ReaderCVS.read("D:\\Sources\\intellijIDEA\\EventGuests\\src\\event1.input");
-        ArrayList<Guest> guestsEvent2 = ReaderCVS.read("D:\\Sources\\intellijIDEA\\EventGuests\\src\\event2.input");
+        ArrayList<Guest> guestsEvent1 = ReaderCVS.read("event1.input");
+        ArrayList<Guest> guestsEvent2 = ReaderCVS.read("event2.input");
         Response response = new Response();
         Checker checker = new Checker();
         checker.check(guestsEvent1, guestsEvent2);
