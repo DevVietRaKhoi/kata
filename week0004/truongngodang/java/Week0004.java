@@ -8,12 +8,17 @@ import java.util.Objects;
 public class Week0004 {
 
     public static void main(String[] args) {
-        ArrayList<Guest> guestsEvent1 = ReaderCVS.read(args[0]);
-        ArrayList<Guest> guestsEvent2 = ReaderCVS.read(args[1]);
-        Response response = new Response();
-        Checker checker = new Checker();
-        checker.check(guestsEvent1, guestsEvent2);
-        System.out.println(response.standardPrint(checker.getGuestErrors()));
+
+        if (ReaderCVS.checkInputs(args)) {
+            ArrayList<Guest> guestsEvent1 = ReaderCVS.read(args[0]);
+            ArrayList<Guest> guestsEvent2 = ReaderCVS.read(args[1]);
+            Response response = new Response();
+            Checker checker = new Checker();
+            checker.check(guestsEvent1, guestsEvent2);
+            System.out.println(response.standardPrint(checker.getGuestErrors()));
+        } else {
+            System.out.println("File Not Allow!");
+        }
     }
 }
 
@@ -75,13 +80,35 @@ class ReaderCVS {
         }
         return guests;
     }
+
+    public static boolean check(String fileName) {
+        String[] extendAllow = {"cvs", "input"};
+        String extendFile = fileName.substring(fileName.lastIndexOf(".") + 1);
+        for (int j = 0; j < extendAllow.length; j++) {
+            if (Objects.equals(extendAllow[j], extendFile)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean checkInputs(String[] inputs) {
+        for (int i = 0; i < inputs.length; i++) {
+            if (!ReaderCVS.check(inputs[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 class Checker {
     private ArrayList<Guest> guestErrors = new ArrayList<Guest>();
+
     public ArrayList<Guest> getGuestErrors() {
         return guestErrors;
     }
+
     public void check(ArrayList<Guest> guestEvent1, ArrayList<Guest> guestEvent2) {
         boolean temp = guestEvent1.size() > guestEvent2.size();
         if (temp) {
