@@ -8,16 +8,13 @@ import java.util.Objects;
 public class Week0004 {
 
     public static void main(String[] args) {
-
-        if (ReaderCVS.checkInputs(args)) {
+        if (args.length == 2) {
             ArrayList<Guest> guestsEvent1 = ReaderCVS.read(args[0]);
             ArrayList<Guest> guestsEvent2 = ReaderCVS.read(args[1]);
             Response response = new Response();
             Checker checker = new Checker();
             checker.check(guestsEvent1, guestsEvent2);
             System.out.println(response.standardPrint(checker.getGuestErrors()));
-        } else {
-            System.out.println("File Not Allow!");
         }
     }
 }
@@ -80,26 +77,6 @@ class ReaderCVS {
         }
         return guests;
     }
-
-    public static boolean check(String fileName) {
-        String[] extendAllow = {"cvs", "input"};
-        String extendFile = fileName.substring(fileName.lastIndexOf(".") + 1);
-        for (int j = 0; j < extendAllow.length; j++) {
-            if (Objects.equals(extendAllow[j], extendFile)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static boolean checkInputs(String[] inputs) {
-        for (int i = 0; i < inputs.length; i++) {
-            if (!ReaderCVS.check(inputs[i])) {
-                return false;
-            }
-        }
-        return true;
-    }
 }
 
 class Checker {
@@ -134,6 +111,10 @@ class Checker {
 class Response {
     private String result;
 
+    public String getResult() {
+        return result;
+    }
+
     public String standardPrint(ArrayList<Guest> guestErrors) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < guestErrors.size(); i++) {
@@ -144,9 +125,5 @@ class Response {
         }
         this.result = String.valueOf(sb);
         return String.valueOf(sb);
-    }
-
-    public String getResult() {
-        return result;
     }
 }
