@@ -121,7 +121,9 @@ class Response {
             sb.append(guestErrors.get(i).getFname()).append(" ");
             sb.append(guestErrors.get(i).getLname()).append(" ");
             sb.append("<").append(guestErrors.get(i).getEmail()).append(">");
-            sb.append("\n");
+            if (i != guestErrors.size() - 1) {
+                sb.append("\n");
+            }
         }
         this.result = String.valueOf(sb);
         return String.valueOf(sb);
