@@ -84,4 +84,9 @@ public class Guest implements Comparable<Guest> {
     }
     return this.firstName.compareTo(another.firstName);
   }
+  
+  @Override
+  public String toString() {
+  	return String.format("%s %s <%s>", firstName, lastName, emailAddress);
+  }
 }
