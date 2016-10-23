@@ -1,46 +1,71 @@
 import sys
 
 
-class Guests():
+class Guest():
+
+    def __init__(self, firstName, lastName, email):
+        self.firstName = firstName
+        self.lastName = lastName
+        self.email = email
+        self.eventFiles = dict()
+
+    def getFormattedString(self):
+        return self.firstName + \
+            ' ' + self.lastName + ' <' + self.email + '>'
+
+    def getKey(self):
+        return self.email
+
+
+class EventManagement():
 
     def __init__(self):
-        self.fileRecords = dict()
-        self.printFormat = dict()
+        self.guests = dict()
 
+    def isValidGuest(self, newGuest):
+        newGuestKey = newGuest.getKey()
+        if newGuestKey in self.guests:
+            if newGuest.firstName != self.guests[newGuestKey].firstName \
+                or newGuest.lastName != self.guests[newGuestKey].lastName:
+                raise Exception(
+                    'IO Error', 'Duplicated users with the same email')
+                return False
+        return True
 
-def readFile(guests, fileName):
-    try:
-        f = open(fileName)
-        f.readline()
-        content = f.readlines()
-        for line in content:
-            firstName, lastName, email = line.strip().split(',')
-            if email in guests.fileRecords:
-                if fileName in guests.fileRecords[email]:
-                    raise Exception(
-                        'IO Error', 'Duplicated users with the same email')
-                guests.fileRecords[email].append(fileName)
-            else:
-                guests.fileRecords[email] = [fileName]
-            guests.printFormat[email] = firstName + \
-                ' ' + lastName + ' <' + email + '>'
-    except IOError:
-        raise Exception('IO Error', 'Reading file')
+    def addGuest(self, newGuest):
+        newGuestKey = newGuest.getKey()
+        if newGuestKey in self.guests:
+            self.guests[newGuestKey].eventFiles.update(
+                newGuest.eventFiles)
+        else:
+            self.guests[newGuestKey] = newGuest
 
+    def readFile(self, fileName):
+        try:
+            f = open(fileName)
+            f.readline()
+            content = f.readlines()
+            for line in content:
+                firstName, lastName, email = line.strip().split(',')
+                newGuest = Guest(firstName, lastName, email)
+                newGuest.eventFiles[fileName] = True
+                if self.isValidGuest(newGuest):
+                    self.addGuest(newGuest)
+        except IOError:
+            raise Exception('IO Error', 'Error reading file')
 
-def findCommonGuests(guests, firstFile, secondFile):
+    def findCommonGuests(self, firstFile, secondFile):
 
-    readFile(guests, firstFile)
-    readFile(guests, secondFile)
-    commonGuests = []
-    for key in guests.fileRecords.keys():
-        if len(guests.fileRecords[key]) == 2:
-            commonGuests.append(guests.printFormat[key])
-    commonGuests.sort()
-    for guest in commonGuests:
-        print guest
-
+        self.readFile(firstFile)
+        self.readFile(secondFile)
+        commonGuests = []
+        for key in self.guests.keys():
+            if firstFile in self.guests[key].eventFiles and secondFile in self.guests[key].eventFiles:
+                commonGuests.append(self.guests[key].getFormattedString())
+        return sorted(commonGuests)
 
 if __name__ == "__main__":
-    guests = Guests()
-    findCommonGuests(guests, sys.argv[1], sys.argv[2])
+    eventManager = EventManagement()
+    commonGuests = eventManager.findCommonGuests(sys.argv[1], sys.argv[2])
+    for guest in commonGuests:
+        print guest
