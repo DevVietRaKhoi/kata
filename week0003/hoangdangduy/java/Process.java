@@ -1,22 +1,23 @@
 import java.util.HashMap;
 
 public class Process {
-	private static final String add = "A";
-	private static final String deposite = "D";
-	private static final String withdraw = "W";
-	
+	private static final String ADD = "A";
+	private static final String DEPOSIT = "D";
+	private static final String WITHDRAW = "W";
+
 	public HashMap<String, Double> process(String data, HashMap<String, Double> listAccount) {
 		Account account = new Account();
 		String[] inforTransaction = data.split(" ");
-		
+		inforTransaction[1] = inforTransaction[1].toUpperCase();
+
 		switch (inforTransaction[0]) {
-		case add:
+		case ADD:
 			account = createAccount(inforTransaction[1], Double.parseDouble(inforTransaction[2]), listAccount);
 			return editListAccAfterAction(account, listAccount);
-		case deposite:
+		case DEPOSIT:
 			account = depositMoney(inforTransaction[1], Double.parseDouble(inforTransaction[2]), listAccount);
 			return editListAccAfterAction(account, listAccount);
-		case withdraw:
+		case WITHDRAW:
 			account = withdrawMoney(inforTransaction[1], Double.parseDouble(inforTransaction[2]), listAccount);
 			return editListAccAfterAction(account, listAccount);
 		default:
@@ -26,7 +27,7 @@ public class Process {
 		}
 		return listAccount;
 	}
-	
+
 	public Account createAccount(String name, Double money, HashMap<String, Double> listAccount){
 		Response response = new Response();
 		if (!listAccount.containsKey(name) && validate(name, money)){
@@ -35,10 +36,10 @@ public class Process {
 		}else{
 			response.showMessage("False");
 		}
-		
+
 		return null;
 	}
-	
+
 	public Account depositMoney(String name, Double money, HashMap<String, Double> listAccount){
 		Response response = new Response();
 		if (listAccount.containsKey(name) && validate(name, money)){
@@ -50,10 +51,10 @@ public class Process {
 		}else{
 			response.showMessage("False");
 		}
-		
+
 		return null;
 	}
-	
+
 	public Account withdrawMoney(String name, Double money, HashMap<String, Double> listAccount){
 		Response response = new Response();
 		Double currentMoney = listAccount.get(name);
@@ -67,7 +68,7 @@ public class Process {
 		}
 		return null;
 	}
-	
+
 	public HashMap<String, Double> editListAccAfterAction(Account account, HashMap<String, Double> listAccount){
 		if (account != null){
 			listAccount.put(account.getName(), account.getMoney());
@@ -75,7 +76,7 @@ public class Process {
 		}
 		return listAccount;
 	}
-	
+
 	public boolean validate(String name, Double money){
 		boolean checkName = name.matches("^[A-Za-z]+$");
 		boolean checkMoney = money > 0 ? true : false;
