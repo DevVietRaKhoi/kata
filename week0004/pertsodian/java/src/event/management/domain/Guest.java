@@ -2,8 +2,6 @@ package event.management.domain;
 
 public class Guest implements Comparable<Guest> {
 
-	private static final String REGISTRATION_ENTRY_DELIMETER = ",";
-
 	private String firstName;
 	private String lastName;
 	private String emailAddress;
@@ -12,17 +10,6 @@ public class Guest implements Comparable<Guest> {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
-	}
-
-	public static Guest fromRegistrationEntry(String registrationEntry) {
-		if (registrationEntry == null || registrationEntry.isEmpty())
-			throw new IllegalArgumentException("Guest input is null or empty");
-
-		String[] inputs = registrationEntry.split(REGISTRATION_ENTRY_DELIMETER);
-		if (inputs.length != 3)
-			throw new IllegalArgumentException("Invalid registration entry");
-
-		return new Guest(inputs[0], inputs[1], inputs[2]);
 	}
 
 	public String getFirstName() {
