@@ -9,7 +9,7 @@ class Guest():
         self.email = email
         self.eventFiles = dict()
 
-    def getFormattedString(self):
+    def __str__(self):
         return self.firstName + \
             ' ' + self.lastName + ' <' + self.email + '>'
 
@@ -61,7 +61,7 @@ class EventManagement():
         commonGuests = []
         for key in self.guests.keys():
             if firstFile in self.guests[key].eventFiles and secondFile in self.guests[key].eventFiles:
-                commonGuests.append(self.guests[key].getFormattedString())
+                commonGuests.append(self.guests[key])
         return sorted(commonGuests)
 
 if __name__ == "__main__":
