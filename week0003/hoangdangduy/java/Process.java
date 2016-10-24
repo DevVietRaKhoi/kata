@@ -1,24 +1,26 @@
 import java.util.HashMap;
 
 public class Process {
-	private static final String ADD = "A";
-	private static final String DEPOSIT = "D";
-	private static final String WITHDRAW = "W";
+	private static final String CREATE_ACCOUNT = "A";
+	private static final String DEPOSIT_MONEY = "D";
+	private static final String WITHDRAW_MONEY = "W";
 
 	public HashMap<String, Double> process(String data, HashMap<String, Double> listAccount) {
 		Account account = new Account();
 		String[] inforTransaction = data.split(" ");
-		inforTransaction[1] = inforTransaction[1].toUpperCase();
+		String action = inforTransaction[0];
+		String nameClient = inforTransaction[1].toUpperCase();
+		Double amountMoney = Double.parseDouble(inforTransaction[2]);
 
-		switch (inforTransaction[0]) {
-		case ADD:
-			account = createAccount(inforTransaction[1], Double.parseDouble(inforTransaction[2]), listAccount);
+		switch (action) {
+		case CREATE_ACCOUNT:
+			account = createAccount(nameClient, amountMoney, listAccount);
 			return editListAccAfterAction(account, listAccount);
-		case DEPOSIT:
-			account = depositMoney(inforTransaction[1], Double.parseDouble(inforTransaction[2]), listAccount);
+		case DEPOSIT_MONEY:
+			account = depositMoney(nameClient, amountMoney, listAccount);
 			return editListAccAfterAction(account, listAccount);
-		case WITHDRAW:
-			account = withdrawMoney(inforTransaction[1], Double.parseDouble(inforTransaction[2]), listAccount);
+		case WITHDRAW_MONEY:
+			account = withdrawMoney(nameClient, amountMoney, listAccount);
 			return editListAccAfterAction(account, listAccount);
 		default:
 			Response response = new Response();
