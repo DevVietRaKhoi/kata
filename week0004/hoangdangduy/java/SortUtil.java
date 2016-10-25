@@ -1,67 +1,59 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class SortUtil {
-	public int Partition(ArrayList<Client> listClient, int left, int right, String chooseFunctionSort) {
-		int x = left;
-		int i = left + 1;
-		int j = right;
-		Client t;
-		do {
-			switch (chooseFunctionSort) {
-			case "fname":
-				while ((i <= j) && (listClient.get(i).getFname().compareTo(listClient.get(x).getFname()) <= 0)) {
-					i++;
-				}
-				while ((i <= j) && (listClient.get(j).getFname().compareTo(listClient.get(x).getFname()) >= 0)) {
-					j--;
-				}
-				break;
-			case "lname":
-				while ((i <= j) && (listClient.get(i).getLname().compareTo(listClient.get(x).getLname()) <= 0)) {
-					i++;
-				}
-				while ((i <= j) && (listClient.get(j).getLname().compareTo(listClient.get(x).getLname()) >= 0)) {
-					j--;
-				}
-				break;
-			case "email":
-				while ((i <= j) && (listClient.get(i).getEmail().compareTo(listClient.get(x).getEmail()) <= 0)) {
-					i++;
-				}
-				while ((i <= j) && (listClient.get(j).getEmail().compareTo(listClient.get(x).getEmail()) >= 0)) {
-					j--;
-				}
-				break;
-			default:
-				break;
-			}
 
-			while ((i <= j) && (listClient.get(i).getEmail().compareTo(listClient.get(x).getEmail()) <= 0)) {
-				i++;
-			}
-			while ((i <= j) && (listClient.get(j).getEmail().compareTo(listClient.get(x).getEmail()) >= 0)) {
-				j--;
-			}
-			if (i < j) {
-				t = listClient.get(i);
-				listClient.set(i, listClient.get(j));
-				listClient.set(j, t);
-				i++;
-				j--;
-			}
-		} while (i <= j);
-		t = listClient.get(left);
-		listClient.set(left, listClient.get(j));
-		listClient.set(j, t);
-		return j;
-	}
+	public ArrayList<Client> sort(ArrayList<Client> listClient) {
+		Collections.sort(listClient, new Comparator<Client>() {
 
-	void QuickSoft(ArrayList<Client> listClient, int left, int right, String chooseFunctionSort) {
-		int k;
-		if (left < right) {
-			k = Partition(listClient, left, right, chooseFunctionSort);
-			QuickSoft(listClient, left, k - 1, chooseFunctionSort);
-			QuickSoft(listClient, k + 1, right, chooseFunctionSort);
+			@Override
+			public int compare(Client client1, Client client2) {
+				return client1.getFname().compareTo(client2.getFname());
+			}
+		});
+
+		int varRun = 0;
+		/*
+		 * Check fname duplicate to sort lname according to fname
+		 */
+		for (int i = 0; i < listClient.size(); i++) {
+			if (i < listClient.size()-1 && listClient.get(i).getFname().compareTo(listClient.get(i+1).getFname()) == 0) {
+				varRun++;
+			} else {
+				if (varRun != 0) {
+					Collections.sort(listClient.subList(i-varRun, i+1), new Comparator<Client>() {
+
+						@Override
+						public int compare(Client client1, Client client2) {
+							return client1.getLname().compareTo(client2.getLname());
+						}
+					});
+				}
+				varRun = 0;
+			}
 		}
+
+		/*
+		 * Check lname duplicate to sort email according to lname
+		 */
+		for (int i = 0; i < listClient.size(); i++) {
+			if (i < listClient.size()-1 && listClient.get(i).getLname().compareTo(listClient.get(i+1).getLname()) == 0
+					&& listClient.get(i).getFname().compareTo(listClient.get(i+1).getFname()) == 0) {
+				varRun++;
+			} else {
+				if (varRun != 0) {
+					Collections.sort(listClient.subList(i-varRun, i+1), new Comparator<Client>() {
+
+						@Override
+						public int compare(Client client1, Client client2) {
+							return client1.getEmail().compareTo(client2.getEmail());
+						}
+					});
+				}
+				varRun = 0;
+			}
+		}
+		return listClient;
 	}
-}
+}	

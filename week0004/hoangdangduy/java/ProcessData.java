@@ -12,7 +12,7 @@ public class ProcessData {
 		StringBuilder fname = new StringBuilder(inforClient[0].toLowerCase());
 		StringBuilder lname = new StringBuilder(inforClient[1].toLowerCase());
 		StringBuilder email = new StringBuilder(inforClient[2].toLowerCase());
-		
+
 		fname.setCharAt(0, Character.toUpperCase(fname.charAt(0)));
 		lname.setCharAt(0, Character.toUpperCase(lname.charAt(0)));
 		if (email.toString().contains("@")) {
@@ -24,21 +24,21 @@ public class ProcessData {
 		}
 		return null;
 	}
-	
-	public ArrayList<Client> readDataFromFile(String nameFileInput){
+
+	public ArrayList<Client> readDataFromFile(String nameFileInput) {
 		ArrayList<Client> listClient = new ArrayList<>();
 		Client client = new Client();
-		
+
 		Path currentRelativePath = Paths.get("");
 		String folderPath = currentRelativePath.toAbsolutePath().toString();
 		Path path = Paths.get(folderPath, nameFileInput);
 		Charset charset = Charset.forName("UTF-8");
 		String strLine;
-		
+
 		try (BufferedReader reader = Files.newBufferedReader(path, charset)) {
 			while ((strLine = reader.readLine()) != null) {
 					client = convertDataToEntityClient(strLine);
-					if (client != null){
+					if (client != null) {
 						listClient.add(client);
 					}
 			}
