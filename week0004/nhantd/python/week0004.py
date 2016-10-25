@@ -10,8 +10,8 @@ class Guest():
         self.eventFiles = dict()
 
     def __str__(self):
-        return self.firstName + \
-            ' ' + self.lastName + ' <' + self.email + '>'
+        return '{firstName} {lastName} <{email}>'.format(
+            firstName=self.firstName, lastName=self.lastName, email=self.email)
 
     def getKey(self):
         return self.email
@@ -26,7 +26,7 @@ class EventManagement():
         newGuestKey = newGuest.getKey()
         if newGuestKey in self.guests:
             if newGuest.firstName != self.guests[newGuestKey].firstName \
-                or newGuest.lastName != self.guests[newGuestKey].lastName:
+                    or newGuest.lastName != self.guests[newGuestKey].lastName:
                 raise Exception(
                     'IO Error', 'Duplicated users with the same email')
                 return False
