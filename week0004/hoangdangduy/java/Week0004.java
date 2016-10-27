@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Week0004 {
 	public static void main(String[] args) {
 		Week0004 week0004 = new Week0004();
-		args = new String[]{"event1.input","event2.input"};
 		week0004.action(args);
 	}
 
@@ -14,16 +13,18 @@ public class Week0004 {
 		ProcessData processData = new ProcessData();
 		ArrayList<Client> listClientTemporary = new ArrayList<>();
 		ArrayList<Client> listClient = new ArrayList<>();
-		Set<String> hashsetClient2Event = new HashSet<>();
+		Map<String, Integer> hashmapClient2Event = new HashMap<>();
 
 		for (int i = 0; i < nameFile.length; i++) {
 			listClientTemporary = processData.readDataFromFile(nameFile[i]);
 			if (listClientTemporary != null && !listClientTemporary.isEmpty()) {
 				for (int j = 0; j < listClientTemporary.size(); j++) {
-					if (hashsetClient2Event.contains(listClientTemporary.get(j).getEmail())) {
+					if (hashmapClient2Event.containsKey(listClientTemporary.get(j).getEmail()) && hashmapClient2Event.get(listClientTemporary.get(j).getEmail()) == 1 ) {
 						listClient.add(listClientTemporary.get(j));
-					} else {
-						hashsetClient2Event.add(listClientTemporary.get(j).getEmail());
+						int total = hashmapClient2Event.get(listClientTemporary.get(j).getEmail());
+						hashmapClient2Event.put(listClientTemporary.get(j).getEmail(), total++);
+					} else if (!hashmapClient2Event.containsKey(listClientTemporary.get(j).getEmail())) {
+						hashmapClient2Event.put(listClientTemporary.get(j).getEmail(), 1);
 					}
 				}
 			}
