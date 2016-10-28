@@ -2,11 +2,7 @@
 n, m = 4, 4 
 # n, m = map(int, input().strip().split()) 
 grid = [[0 for counter in range(n)] for y in range(m)]
-top_row = 0 
-bottom_row = m-1
-left_column = 0
-right_column = n-1
-counter = 1 
+top_row, bottom_row, left_column, right_column, counter = 0, m - 1, 0, n - 1, 1
 # loop around the grid
 for _ in range(m // 2): 
   for t in range(left_column, right_column + 1):
