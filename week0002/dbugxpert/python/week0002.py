@@ -23,5 +23,6 @@ for _ in range(m//2):
     g[t][lc] = x
     x += 1 
   lc += 1  
+l = len(str(n*m))
 for x in g:
-  print(" ".join(str(y) for y in x))
+  print(" ".join(str(y).rjust(l) for y in x))
