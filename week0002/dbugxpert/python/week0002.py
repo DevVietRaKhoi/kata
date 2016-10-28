@@ -1,4 +1,3 @@
-# input size for grid
 n, m = 4, 4 
 # n, m = map(int, input().strip().split()) 
 grid = [[0 for cell in range(n)] for row in range(m)]
