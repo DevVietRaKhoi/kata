@@ -1,28 +1,29 @@
-n = 4
-m = 4
-g = [[0 for x in range(n)] for y in range(m)] 
-tr = 0
-br = m-1
-lc = 0
-rc = n-1
-x = 1
-for _ in range(m//2):
-  for t in range(lc, rc+1):
-    g[tr][t] = x
+n, m = 4, 4 # input for size of grid
+# comment out the following line for input parameters if required
+# n, m = map(int, input().strip().split()) 
+grid = [[0 for x in range(n)] for y in range(m)]
+top_row = 0 
+bottom_row = m-1
+left_column = 0
+right_column = n-1
+x = 1 # counter for value that will be printed
+for _ in range(m // 2): # loop around the grid
+  for t in range(left_column, right_column + 1):
+    grid[top_row][t] = x
     x += 1
-  tr += 1  
-  for t in range(tr, br+1):
-    g[t][rc] = x
+  top_row += 1  
+  for t in range(top_row, bottom_row + 1):
+    grid[t][right_column] = x
     x += 1  
-  rc -= 1
-  for t in range(rc, lc-1, -1):  
-    g[br][t] = x
+  right_column -= 1
+  for t in range(right_column, left_column - 1, -1):  
+    grid[bottom_row][t] = x
     x += 1
-  br -= 1
-  for t in range(br, tr-1, -1):
-    g[t][lc] = x
+  bottom_row -= 1
+  for t in range(bottom_row, top_row - 1, -1):
+    grid[t][left_column] = x
     x += 1 
-  lc += 1  
-l = len(str(n*m))
-for x in g:
+  left_column += 1    
+l = len(str(n*m)) # max len will be used for padding
+for x in grid:
   print(" ".join(str(y).rjust(l) for y in x))
