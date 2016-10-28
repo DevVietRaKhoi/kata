@@ -7,13 +7,18 @@ namespace DVRK
     class Program
     {
         public static Dictionary<string, string> guestList;
-
+        public static string[] event1;
+        public static string[] event2;
         static void Main(string[] args)
         {
             guestList = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            string[] event1 = File.ReadAllLines("event1.input");
-            string[] event2 = File.ReadAllLines("event2.input");
+            event1 = File.ReadAllLines("event1.input");
+            event2 = File.ReadAllLines("event2.input");
 
+            showDoubleRegisterGuest();
+        }
+        static void showDoubleRegisterGuest ()
+        {
             foreach (string guestLine in event1)
             {
                 foreach (string guestLine2 in event2)
