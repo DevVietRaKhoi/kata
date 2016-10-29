@@ -4,32 +4,37 @@ using System.IO;
 
 namespace DVRK
 {
+
     class Program
     {
-        public static Dictionary<string, string> guestList;
-        public static string[] event1;
-        public static string[] event2;
         static void Main(string[] args)
         {
-            guestList = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
-            event1 = File.ReadAllLines("event1.input");
-            event2 = File.ReadAllLines("event2.input");
+            string[] event1 = File.ReadAllLines(args[0]);
+            string[] event2 = File.ReadAllLines(args[1]);
 
-            showDoubleRegisterGuest();
+            EventHandling eventHandling = new EventHandling();
+            eventHandling.showDoubleRegisterGuest(event1, event2);
         }
-        static void showDoubleRegisterGuest ()
+        
+    }
+    class EventHandling
+    {
+        Dictionary<string, string> guestList = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+
+        public void showDoubleRegisterGuest(string[] guestOfEvent1, string[] guestOfEvent2)
         {
-            foreach (string guestLine in event1)
+            string fName, lName, email;
+            for(int i = 1; i < guestOfEvent1.Length; i++)
             {
-                foreach (string guestLine2 in event2)
-                {
-                    if (guestLine == guestLine2)
+                for(int j = 1; j < guestOfEvent2.Length; j++)
+                { 
+                    if (guestOfEvent1[i] == guestOfEvent2[j])
                     {
-                        string[] guestInfo = guestLine.Split(',');
-                        if (guestInfo[0] != "fname")
-                        {
-                            guestList.Add(string.Concat(guestInfo[0], " ", guestInfo[1]), guestInfo[2]);
-                        }
+                        string[] guestInfo = guestOfEvent1[i].Split(',');
+                        fName = guestInfo[0];
+                        lName = guestInfo[1];
+                        email = guestInfo[2];
+                        guestList.Add(string.Concat(fName, " ", lName), email);
                     }
                 }
             }
