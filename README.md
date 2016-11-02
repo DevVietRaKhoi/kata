@@ -14,11 +14,13 @@ Submit your code in any of the following languages:
 * Go
 * Java
 * Javascript (browser/Node.JS)
+* Objective-C
 * OCaml
 * Perl
 * PHP
 * Python
 * Ruby
+* Swift
 * Unix shells & tools: sh/ksh/bash/zsh, awk, sed, uniq, ...
 
 You can submit by creating a pull request.
